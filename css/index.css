@@ -61,6 +61,7 @@ body header img{
     padding: 40px 30px;
     margin-top: 20px;
 }
+
 .aux label{
     margin: 0;
     padding: 0;
@@ -93,6 +94,9 @@ body header img{
     border-radius: 20px;
 }
 
+.aux input[type="submit"]:hover{
+    background-color:darkred; 
+}
 .aux h1{
     margin 0;
     padding 0 0 20px;
@@ -109,4 +113,77 @@ body header img{
 
 .aux a:hover{
     color: red;
+}
+
+.main{
+    width: 955px;
+}
+
+.main .row{
+    margin-left: 420px;
+    background-color: #000;
+    width: 1400px;
+    height: 460px;
+    padding-right: 20px;
+    padding-bottom: 15px;
+    border-radius: 15px;
+}
+
+.main .row .portada {
+    width: 250px;
+    height: 420px;
+    padding-left: 80px;
+    padding-top: 30px;
+}
+
+.main .row .portada .foto{
+    width: 250px;
+    height: 400px;
+}
+
+.main .row .portada p{
+    text-align: center;
+    color: white;
+}
+
+.main #primera{
+    margin-left: 420px;
+    background-color: #000;
+    width: 1400px;
+    height: 460px;
+    padding-right: 20px;
+    padding-bottom: 15px;
+    border-radius: 15px;
+}
+.main .row  #foto1{
+    margin-left: 0px;
+    margin-top: -420px;
+}
+
+.main .row  #foto2{
+    margin-left: 500px;
+    margin-top: -450px;
+}
+
+.main .row  #foto3{
+    margin-left: 1000px;
+    margin-top: -450px;
+}
+
+.main #segunda{
+    margin-top: 450px;
+}
+
+.main #tercera{
+    margin-top: 450px;
+}
+
+footer{
+    background-color: #000;
+    color: white;
+    text-align: center;
+    float: bottom;
+    height: 200px;
+    padding-top:100px ;
+    margin:10px;
 }
