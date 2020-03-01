@@ -3,23 +3,28 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Práctica 1</title>
+        <title>Portada P1</title>
+        <!--Enlazo el código html con el fichero css que contendrá el estilo de la página-->
         <link rel="stylesheet" href="css/index.css">
+        <!--Esta sección es la encargada de asignarle un favicon(logo que sale junto al nombre de la pestaña en el navegador) a la página-->
+        <link rel="shortcut icon" type="image/png" href="img/favicon.png"/>
     </head>
     <body>
+        <!--Código correspondiente al nav-->
         <header>
             <p>Netflis</p>
             <img src="img/logo.jpg">
             <nav class="menu">
                 <ul>
-                    <li><a href='#'>Series</a></li>
-                    <li><a href='#'>Peliculas</a></li>
-                    <li><a href='#'>Ranking películas</a></li>
-                    <li><a href='#'>Ranking series</a></li>
-                    <li><a href='#'>Contacto</a></li>
+                    <li><a href='evento.html'>Series</a></li>
+                    <li><a href='evento.html'>Peliculas</a></li>
+                    <li><a href='evento.html'>Ranking películas</a></li>
+                    <li><a href='evento.html'>Ranking series</a></li>
+                    <li><a href='evento.html'>Contacto</a></li>
                 </ul>
             </nav>
         </header>
+        <!--Código correspondiente al formulario de login-->
         <div class="aux">
             <h1>Login here</h1>
             <form>
@@ -28,7 +33,7 @@
 
                 <label for "password"> Password </label>
                 <input type="password" placeholder="Enter Password"></input>
-
+                <!--Utilizo la etiqueta submit para los botones del login-->
                 <input type="submit" value="Log In">
                 <input type="submit" value="Sing Up">
 
@@ -36,54 +41,54 @@
 
             </form>
         </div>
-
+        <!--En el div main va el contenido principal de la página, esta formado por tres filas (clase row)-->
         <div class="main">
             <div class="row" id="primera">
                 <div class="portada" id="foto1">
-                    <img src="img/himym.jpg" class="foto">
-                    <p>Cómo conocí a vuestra madre</p>
+                    <a href="evento.html"><img src="img/himym.jpg" class="foto">
+                    <p>Cómo conocí a vuestra madre</p></a>
                 </div>
                 <div class="portada" id="foto2">
-                    <img src="img/Chernobyl.jpg" class="foto">
-                    <p>Chernobyl</p>
+                    <a href="evento.html"><img src="img/Chernobyl.jpg" class="foto">
+                    <p>Chernobyl</p></a>
                 </div>
                 <div class="portada" id="foto3">
-                    <img src="img/dark.jpg" class="foto">
-                    <p>Dark</p>
+                    <a href="evento.html"><img src="img/dark.jpg" class="foto">
+                    <p>Dark</p></a>
                 </div>
             </div>
             <div class="row" id="segunda">
                 <div class="portada" id="foto1">
-                    <img src="img/padrino.jpg" class="foto">
-                    <p>El padrino</p>
+                    <a href="evento.html"><img src="img/padrino.jpg" class="foto">
+                    <p>El padrino</p></a>
                 </div>
                 <div class="portada" id="foto2">
-                    <img src="img/pulp.jpg" class="foto">
-                    <p>Pulp fiction</p>
+                    <a href="evento.html"><img src="img/pulp.jpg" class="foto">
+                    <p>Pulp fiction</p></a>
                 </div>
                 <div class="portada" id="foto3">
-                    <img src="img/unodelosnuestros.jpg" class="foto">
-                    <p>Goodfellas</p>
+                    <a href="evento.html"><img src="img/unodelosnuestros.jpg" class="foto">
+                    <p>Goodfellas</p></a>
                 </div>
             </div>
-
             <div class="row" id="tercera">
                 <div class="portada" id="foto1">
-                    <img src="img/Django.jpg" class="foto">
-                    <p>Django</p>
+                    <a href="evento.html"><img src="img/Django.jpg" class="foto">
+                    <p>Django</p></a>
                 </div>
                 <div class="portada" id="foto2">
-                    <img src="img/interstellar.jpg" class="foto">
-                    <p>Interestelar</p>
+                    <a href="evento.html"><img src="img/interstellar.jpg" class="foto">
+                    <p>Interestelar</p></a>
                 </div>
                 <div class="portada" id="foto3">
-                    <img src="img/Origen.jpg" class="foto">
-                    <p>Origen</p>
+                    <a href="evento.html"><img src="img/Origen.jpg" class="foto">
+                    <p>Origen</p></a>
                 </div>
             </div>
             
         </div>
     </body>
+    <!--Pie de página-->
     <footer>
         <p>Prácticas de Sistemas de Información Basados en Web UGR 2020</p>
         <p>© Miguel Ángel Posadas Arráez</p>
