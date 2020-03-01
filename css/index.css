@@ -8,10 +8,46 @@ body header{
     background-color: black;
     color:white;
     text-align:center;
-    /*El width en tanto porciento hace que el tamaño se reajuste al cambiar de tamaño la página*/
     width: 100%;
-    height: 200px;
+}
+@media(min-width:826px){
+    body header{
+        height: 200px;
+        border-radius: 15px;
+    }
+    .menu ul{
+        float: left;
+        margin-left: 200px!important;
+    }
+    .menu ul li{
+        display: inline-block;
+    }
+    /*Estilo del logo de la barra de navegación*/
+    body header img{
+        width: 200px;
+        height: 200px;
+        position: absolute;
+        top: 8px;
+        left: 0px;
+    }
+}
+
+@media(max-width:826px){
+    body header{
+    height: 475px;
     border-radius: 15px;
+    }
+
+    .menu ul li{
+        display: block;
+    }
+    /*Estilo del logo de la barra de navegación*/
+    body header img{
+        width: 50px;
+        height: 50px;
+        float: left;
+        margin-top: -62.5px;
+    }
 }
 
 body header p{
@@ -19,15 +55,7 @@ body header p{
     padding-top: 60px;
     font-size: 400%;
 }
-/*Estilo del logo de la barra de navegación*/
-body header img{
-    width: 200px;
-    height: 200px;
-    position: absolute;
-    top: 8px;
-    left: 0px;
 
-}
 .menu{
     background-color: black;
     margin-top: 8px;
@@ -36,13 +64,8 @@ body header img{
     list-style: none;
     padding: 0;
     margin: 0;
-    float: left;
-    margin-left: 200px;
 }
 
-.menu ul li{
-    display: inline-block;
-}
 
 .menu ul li a{
     text-decoration: none;
@@ -51,9 +74,11 @@ body header img{
     padding: 20px;
 }
 
+
 .menu ul li a:hover{
     background-color: red;
 }
+
 /***********************************************************************************************************************************************/
 
 
@@ -199,9 +224,6 @@ footer{
 /*id creado para cambiar el fondo de la página únicamente a la página evento.html*/
 
 /*Estilo para la review*/
-.evento{
-    display: block;
-}
 
 .review{
     margin-left: 22.5%;
@@ -250,7 +272,8 @@ footer{
     color: white;
     padding: 15px;
     align-items: center;
-    margin-bottom: 20px;
+    margin-bottom: -10px;
+    margin-right: 50%;
 }
 
 .recomendaciones p{
