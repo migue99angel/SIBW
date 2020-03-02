@@ -9,22 +9,48 @@ body{
         float:right;
         margin-top: -500px;
     }
+    .escena{
+        padding: 10px;
+        width: 300px;
+        height: 175px;
+    }
 }
+
 @media (max-width: 1476px) {
     .encp{
         text-align: center;
     }
+    .escena{
+        padding: 10px;
+        width: 300px;
+        height: 175px;
+    }
+}
+
+/*Para versión móvil*/
+@media(max-width: 735px){
+    .marco{
+        display: block;
+        margin-left: 0%;
+    }
+    /*Cambio el tamaño de las fotos de las escenas para que se vean correctamente en dispositivos móviles*/
+    .escena{
+        width: 200px;
+        height: 120px;
+    }
+}
+
+.marco p{
+    font-size: 10px;
+    text-align: center;
+    margin-top: -3px;
 }
 .marco .encp p{
     font-size: 10px;
     text-align: center;
     margin-top: 0;
 }
-.escena{
-    padding: 10px;
-    width: 300px;
-    height: 175px;
-}
+
 
 
 .review{
