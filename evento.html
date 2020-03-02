@@ -27,11 +27,19 @@
 
         <div class="evento">
             <div class="recomendaciones">
-                <p>Puede que te interesen estas recomendaciones</p>
-                <img class="rec" src="img/unodelosnuestros.jpg"/>
-                <p>Goodfellas</p>
-                <img class="rec" src="img/padrino.jpg"/>
-                <p>El padrino</p>
+                <p id="title">Puede que te interesen estas recomendaciones</p>
+                <!--Encapsulo las dos portadas juntas con los titulos, además encapsulo cada portada por separado-->
+                <!--Esto lo hago para facilitar el diseño responsive (ver uso en el index.css)-->
+                <div class="encPortadas">
+                    <div class="encPor">
+                        <img class="rec" src="img/unodelosnuestros.jpg"/>
+                        <p>Goodfellas</p>
+                    </div>
+                    <div class="encPor">
+                        <img class="rec" src="img/padrino.jpg"/>
+                        <p>El padrino</p>
+                    </div>
+                </div>
             </div>
             <div class="review">
                 <h1>Pulp Fiction</h1>
@@ -43,13 +51,17 @@
                     <a href="http://www.facebook.com"><img src="img/facebook.png"/></a>
                     <a href="evento_imprimir.html"><img src="img/imprimir.jpg"/></a>
                 </div>
-                <!--Div que contendrá las imágenes-->
-                <div class="marco">
+            <!--Div que contendrá las imágenes-->
+            <div class="marco">
+                <div class="encp">
                     <img class="escena" src="img/escena1.jpg"/>
                     <p>Escena de John Travolta y Samuel L Jackson</p>
+                </div>
+                <div class="encp">
                     <img class="escena" src="img/escena2.png"/>
                     <p>Famosa escena de baile entre John Travolta y Uma Thurman</p>
                 </div>
+            </div>
                 <!--Sección correspondiente a la review y sinopsis de la película-->
                 <p>Jules y Vincent, dos asesinos a sueldo con no demasiadas luces,
                     trabajan para el gángster Marsellus Wallace. Vincent le confiesa a Jules que

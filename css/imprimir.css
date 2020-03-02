@@ -11,9 +11,6 @@ body{
     }
 }
 @media (max-width: 1476px) {
-    .marco{
-        float:bottom;
-    }
     .encp{
         text-align: center;
     }
