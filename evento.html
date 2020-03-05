@@ -8,6 +8,7 @@
         <link rel="stylesheet" href="css/index.css">
         <!--Esta sección es la encargada de asignarle un favicon(logo que sale junto al nombre de la pestaña en el navegador) a la página-->
         <link rel="shortcut icon" type="image/png" href="img/favicon.png"/>
+        <script type="text/javascript" src="script/script.js"></script>
     </head>
     <body>
         <!--Código correspondiente al nav-->
@@ -87,7 +88,22 @@
                     son bien presentados y en ningún momento tiene escenas lentas o aburridas, la historia tiene un ritmo bastante bueno y en general
                      hacen un estupendo trabajo al formarla, más que la acción la película nos cuenta una verdadera historia con partes que hacen sentir
                       intrigados y con ganas de ver más, una obra maestra.</p>     
+
+                <input type="submit" value="Comentar" onclick="mostrarCajonComentario()">
+
+                <form class="CajonComen">
+                    <label for "nombre"> Nombre </label>
+                    <input type="text" placeholder="Introduzca su nombre"></input>
+
+                    <label for "email"> Email </label>
+                    <input type="text" placeholder="Introduzca su correo electrónico"></input>
+
+                    <label for "comentario"> Comentario </label>
+                    <input type="text" placeholder="Deja tu opinión sobre la película"></input>
+                    <input type="submit" value="Publicar">
+                </form>
             </div>
+            
         </div>
     </body>
 

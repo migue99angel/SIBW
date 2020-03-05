@@ -472,3 +472,51 @@ footer{
     height: 20px;
     width: 20px;
 }
+
+
+/*************************************************************************************/
+/*Boton comentar - P2*/
+.review input[type="submit"]{
+    border: none;
+    outline: none;
+    height: 40px;
+    background: red;
+    color: #fff;
+    font-size: 18px;
+    border-radius: 20px;
+    width: 100%;
+}
+
+.review input[type="submit"]:hover{
+    background-color:darkred; 
+}
+
+/*Hover hace que al pasar el ratón por encima cambie de color*/
+.aux a:hover{
+    color: red;
+}
+
+.CajonComen{
+    padding-top: 2.5%;
+    visibility: hidden;
+    margin-bottom: -25%;
+}
+
+.CajonComen input[type="submit"]{
+    margin-top: 2%;
+}
+
+.CajonComen input{
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.CajonComen input[type="text"]{
+    border:none;
+    border-bottom: 1px solid red;
+    background: transparent;
+    outline: none;
+    height: 40px;
+    color: #000;
+    font-size: 16px;
+}
