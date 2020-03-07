@@ -520,3 +520,24 @@ footer{
     color: #000;
     font-size: 16px;
 }
+
+.review input[type="button"]{
+    border: none;
+    outline: none;
+    height: 40px;
+    background: red;
+    color: #fff;
+    font-size: 18px;
+    border-radius: 20px;
+    width: 100%;
+}
+
+.review input[type="button"]:hover{
+    background-color:darkred; 
+}
+
+
+.CajonComen input[type="button"]{
+    margin-top: 2%;
+}
+

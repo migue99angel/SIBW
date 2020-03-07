@@ -91,17 +91,20 @@
 
                 <input type="submit" value="Comentar" onclick="mostrarCajonComentario()">
 
-                <form class="CajonComen">
-                    <label for "nombre"> Nombre </label>
-                    <input type="text" placeholder="Introduzca su nombre"></input>
+                <form name="formulario" class="CajonComen">
+                    <label for "nombre" > Nombre </label>
+                    <input id = "name" name="name" type="text" placeholder="Introduzca su nombre"></input>
 
-                    <label for "email"> Email </label>
-                    <input type="text" placeholder="Introduzca su correo electrónico"></input>
+                    <label for "email" > Email </label>
+                    <input id ="email" name="email" type="text" placeholder="Introduzca su correo electrónico"></input>
 
-                    <label for "comentario"> Comentario </label>
-                    <input type="text" placeholder="Deja tu opinión sobre la película"></input>
-                    <input type="submit" value="Publicar">
+                    <label for "comentario" > Comentario </label>
+                    <input id="comen" name="comen" type="text" placeholder="Deja tu opinión sobre la película"></input>
+                    <input type="button" value="Publicar" onclick="validarComentario()">
                 </form>
+                <!--Este div será en el que pondré los comentarios con javascript-->
+                <div class="comentarios">
+                </div>
             </div>
             
         </div>
