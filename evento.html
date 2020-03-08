@@ -78,6 +78,7 @@
                     <li>1994: Premios Cesar: Nominada a Mejor película extranjera</li>
                     <li>1994: Premios David di Donatello: Mejor film y actor extranjero (Travolta). 3 nom.</li>
                 </ul>
+                <h4>Críticas profesionales</h4>
                 <p class="autor">Emilio García </p><p class="comentario">Sin lugar a dudas, la mejor película de Quentin Tarantino. La mezcla entre humor negro, 
                     y la violencia característica de este director, forman un trabajo excepcional. Debo recalcar que esta inusual 
                     forma de contar una historia (no lineal), hace que se vuelva muy dinámica y entretenida, sin caer en lo absurdo.
@@ -87,7 +88,7 @@
                 <p class="autor">Maria Martín </p><p class="comentario">La película tiene toques de humor bastante bien elaborados, los diálogos 
                     son bien presentados y en ningún momento tiene escenas lentas o aburridas, la historia tiene un ritmo bastante bueno y en general
                      hacen un estupendo trabajo al formarla, más que la acción la película nos cuenta una verdadera historia con partes que hacen sentir
-                      intrigados y con ganas de ver más, una obra maestra.</p>     
+                      intrigados y con ganas de ver más, una obra maestra.</p>   
 
                 <input type="submit" value="Comentar" onclick="mostrarCajonComentario()">
 
@@ -99,7 +100,7 @@
                     <input id ="email" name="email" type="text" placeholder="Introduzca su correo electrónico"></input>
 
                     <label for "comentario" > Comentario </label>
-                    <input id="comen" name="comen" type="text" placeholder="Deja tu opinión sobre la película"></input>
+                    <input id="comen" name="comen" type="text" placeholder="Deja tu opinión sobre la película" onchange="censura()" ></input>
                     <input type="button" value="Publicar" onclick="validarComentario()">
                 </form>
                 <!--Este div será en el que pondré los comentarios con javascript-->
