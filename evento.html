@@ -100,7 +100,7 @@
                     <input id ="email" name="email" type="text" placeholder="Introduzca su correo electrónico"></input>
 
                     <label for "comentario" > Comentario </label>
-                    <input id="comen" name="comen" type="text" placeholder="Deja tu opinión sobre la película" onchange="censura()" ></input>
+                    <input id="comen" name="comen" type="text" placeholder="Deja tu opinión sobre la película" oninput="censura()" ></input>
                     <input type="button" value="Publicar" onclick="validarComentario()">
                 </form>
                 <!--Este div será en el que pondré los comentarios con javascript-->

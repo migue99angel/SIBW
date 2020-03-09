@@ -74,6 +74,10 @@ function aniadirComentario(name,comentario)
     //Introduzco el div en el sitio correspondiente
     var seccion = document.getElementsByClassName("formulario")[0]
     document.getElementsByClassName("evento")[0].insertBefore(newDiv,seccion)
+    //Reseteo los valores del formulario
+    document.getElementById("name").value = ""
+    document.getElementById("email").value = ""
+    document.getElementById("comen").value = ""
 }
 
 function comentariosPredefinidos()
@@ -120,7 +124,30 @@ function comentariosPredefinidos()
 }
 
 function censura()
-{
-    if(document.getElementById("comen").value =="ho")
-        document.getElementById("comen").value =="*"
+{   
+        //Paso el texto que se escribe en la caja de comentarios a un array
+        boxvalue = document.getElementById("comen").value
+        string_to_array = StringToArray(boxvalue)
+        //Compruebo si en el array hay alguna palabra prohibida, en el caso de que no la haya
+        //indexOf devuelve -1 y en el caso de que si la haya devuelve la posición en la que se encuentra
+        var pos = document.getElementById("comen").value.indexOf("Mundo")
+        
+        
+        if(pos != -1)
+        {
+            //En el caso de que se encuentre una palabra prohibida siempre será la última porque es en tiempo de escritura
+            //Así que la eliminamos con pop e introducimos al final ****
+            string_to_array.pop()
+            string_to_array.push("****")
+            //Aquí volvemos a convertir el array en un String, utilizamos join(" ") para cambiar la separación por comas por espacios
+            var sentence = new String(string_to_array.join(" "))
+            //Volvemos a asignar el texto con el contenido restringido
+            document.getElementById("comen").value = sentence
+        }
+
 }
+
+//Función que convierte el string que se le pasa como parámetro en un array
+function StringToArray(str) {
+    return str.trim().split(" ");
+};
