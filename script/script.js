@@ -66,7 +66,7 @@ function aniadirComentario(name,comentario)
     var d = new Date()
     //La variable mes la creo porque getMonth te devuelve un número de 0 a 11, por eso aqui la incremento en uno
     var mes = d.getMonth() + 1
-    newDate = document.createTextNode(d.getDate()+"/"+mes+"/"+d.getFullYear())
+    newDate = document.createTextNode(d.getDate()+"/"+mes+"/"+d.getFullYear()+" a las "+d.getHours()+":"+d.getMinutes())
     //Introduzco todo en el div creado inicialmente
     newDiv.appendChild(newAuthor)
     newDiv.appendChild(newPost)
@@ -95,7 +95,7 @@ function comentariosPredefinidos()
     var d = new Date()
     //La variable mes la creo porque getMonth te devuelve un número de 0 a 11, por eso aqui la incremento en uno
     var mes = d.getMonth() + 1
-    newDate = document.createTextNode(d.getDate()+"/"+mes+"/"+d.getFullYear())
+    newDate = document.createTextNode(d.getDate()+"/"+mes+"/"+d.getFullYear()+" a las "+d.getHours()+":"+d.getMinutes())
     //Introduzco todo en el div creado inicialmente
     newDiv.appendChild(newAuthor)
     newDiv.appendChild(newPost)
@@ -108,16 +108,18 @@ function comentariosPredefinidos()
     newDiv2.className = "Comentario"
     newAuthor = document.createElement("h3")
     newPost = document.createElement("p")
+    newDate2 = document.createElement("h7")
 
     newUser = document.createTextNode("Miguel González")
     newAuthor.appendChild(newUser)
     newComen = document.createTextNode("Cuando el cine elimina los efectos especiales, que desvían nuestra atención, uno solo puede creer en el guión de una película, y cuando esto sucede, solamente Pulp Fiction puede hacerte pensar: QUE GRANDE ES EL CINE!!!")
     newPost.appendChild(newComen)
-    newDate = document.createElement("h7")
-
+    newDate2 = document.createElement("h7")
+    newDate2 = document.createTextNode(d.getDate()+"/"+mes+"/"+d.getFullYear()+" a las "+d.getHours()+":"+d.getMinutes())
     newDiv2.appendChild(newAuthor)
     newDiv2.appendChild(newPost)
-    newDiv2.appendChild(newDate)
+    newDiv2.appendChild(newDate2)
+
     //Introduzco el div en el sitio correspondiente
     var seccion = document.getElementsByClassName("formulario")[0]
     document.getElementsByClassName("evento")[0].insertBefore(newDiv2,seccion)    

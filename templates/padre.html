@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Portada P1</title>
+        <!--Enlazo el código html con el fichero css que contendrá el estilo de la página-->
+        <link rel="stylesheet" href="css/index.css">
+        <!--Esta sección es la encargada de asignarle un favicon(logo que sale junto al nombre de la pestaña en el navegador) a la página-->
+        <link rel="shortcut icon" type="image/png" href="img/favicon.png"/>
+        <script type="text/javascript" src="script/script.js"></script>
+    </head>
+    <body>
+        <!--Código correspondiente al nav-->
+        <header>
+            <p>Netflis</p>
+            <img src="img/logo.jpg">
+            <nav class="menu">
+                <ul>
+                    {% block enlaces %}
+                        <li><a href='index.php'>Series</a></li>
+                        <li><a href='index.php'>Peliculas</a></li>
+                        <li><a href='index.php'>Ranking películas</a></li>
+                        <li><a href='index.php'>Ranking series</a></li>
+                        <li><a href='index.php'>Contacto</a></li>
+                    {% endblock %}
+                </ul>
+            </nav>
+        </header>
+
+        {% block central %}
+        <p> Contenido principal de la página </p>
+        {% endblock %}
+    </body>
+    <!--Pie de página-->
+    <footer>
+        <p>Prácticas de Sistemas de Información Basados en Web UGR 2020</p>
+        <p>© Miguel Ángel Posadas Arráez</p>
+    </footer>
+</html>

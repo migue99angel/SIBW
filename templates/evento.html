@@ -1,0 +1,69 @@
+{% extends "padre.html" %}
+
+    {% block central %}
+        <div class="evento">
+            <div class="recomendaciones">
+                <p id="title">Puede que te interesen estas recomendaciones</p>
+                <!--Encapsulo las dos portadas juntas con los titulos, además encapsulo cada portada por separado-->
+                <!--Esto lo hago para facilitar el diseño responsive (ver uso en el index.css)-->
+                <div class="encPortadas">
+                    {% for recomendacion in recomendaciones %}
+                        <div class="encPor">
+                            <img class="rec" src= {{ recomendacion[0] }} />
+                            <p>{{ recomendacion[1] }}</p>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+            <div class="review">
+                <h1>{{ pelicula }}</h1>
+                <h3>{{ director }}</h3>
+                <h7>{{ fecha }}</h7>
+                <!--Div que contendrá los botones para compartir e imprimir-->
+                <div class="share">
+                    <a href="http://www.twitter.com"><img src="img/twitter.png"/></a>
+                    <a href="http://www.facebook.com"><img src="img/facebook.png"/></a>
+                    <a href="evento_imprimir.html"><img src="img/imprimir.jpg"/></a>
+                </div>
+            <!--Div que contendrá las imágenes-->
+            <div class="marco">
+                {% for escena in escenas %}
+                <div class="encp">
+                    <img class="escena" src= {{ escena[0] }} />
+                    <p>{{escena[1]}}</p>
+                </div>
+                {% endfor %}
+            </div>
+                <!--Sección correspondiente a la review y sinopsis de la película-->
+                <p>{{ review }}</p>
+                <a href={{ enlace }} class="fuente">Sinópsis por FILMAFFINITY</a>
+                <ul>
+                    {% for premio in premios %}
+                        <li>{{ premio }}</li>
+                    {% endfor %}
+                </ul>
+                <h4>Críticas profesionales</h4>
+                {% for critica in criticas %}
+                    <p class="autor">{{critica[0]}} </p><p class="comentario">{{critica[1]}}</p>
+                {% endfor %}  
+
+                <input type="submit" value="Comentar" onclick="mostrarCajonComentario()">
+
+                <form name="formulario" class="CajonComen">
+                    <label for "nombre" > Nombre </label>
+                    <input id = "name" name="name" type="text" placeholder="Introduzca su nombre"></input>
+
+                    <label for "email" > Email </label>
+                    <input id ="email" name="email" type="text" placeholder="Introduzca su correo electrónico"></input>
+
+                    <label for "comentario" > Comentario </label>
+                    <input id="comen" name="comen" type="text" placeholder="Deja tu opinión sobre la película" oninput="censura()" ></input>
+                    <input type="button" value="Publicar" onclick="validarComentario()">
+                </form>
+                <!--Este div será en el que pondré los comentarios con javascript-->
+                <div class="comentarios">
+                </div>
+            </div>
+            
+        </div>
+{% endblock %}
