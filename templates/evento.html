@@ -7,7 +7,7 @@
                 <!--Encapsulo las dos portadas juntas con los titulos, además encapsulo cada portada por separado-->
                 <!--Esto lo hago para facilitar el diseño responsive (ver uso en el index.css)-->
                 <div class="encPortadas">
-                    {% for recomendacion in recomendaciones %}
+                    {% for recomendacion in evento['recomendaciones'] %}
                         <div class="encPor">
                             <img class="rec" src= {{ recomendacion[0] }} />
                             <p>{{ recomendacion[1] }}</p>
@@ -16,9 +16,9 @@
                 </div>
             </div>
             <div class="review">
-                <h1>{{ pelicula }}</h1>
-                <h3>{{ director }}</h3>
-                <h7>{{ fecha }}</h7>
+                <h1>{{ evento['pelicula'] }}</h1>
+                <h3>{{ evento['director'] }}</h3>
+                <h7>{{ evento['fecha'] }}</h7>
                 <!--Div que contendrá los botones para compartir e imprimir-->
                 <div class="share">
                     <a href="http://www.twitter.com"><img src="img/twitter.png"/></a>
@@ -27,10 +27,10 @@
                 </div>
             <!--Div que contendrá las imágenes-->
             <div class="marco">
-                {% for escena in escenas %}
+                {% for escena in evento['escenas'] %}
                 <div class="encp">
                     <img class="escena" src= {{ escena[0] }} />
-                    <p>{{escena[1]}}</p>
+                    <p>{{ escena[1] }}</p>
                 </div>
                 {% endfor %}
             </div>
@@ -38,12 +38,12 @@
                 <p>{{ review }}</p>
                 <a href={{ enlace }} class="fuente">Sinópsis por FILMAFFINITY</a>
                 <ul>
-                    {% for premio in premios %}
+                    {% for premio in evento['premios'] %}
                         <li>{{ premio }}</li>
                     {% endfor %}
                 </ul>
                 <h4>Críticas profesionales</h4>
-                {% for critica in criticas %}
+                {% for critica in evento['criticas'] %}
                     <p class="autor">{{critica[0]}} </p><p class="comentario">{{critica[1]}}</p>
                 {% endfor %}  
 
