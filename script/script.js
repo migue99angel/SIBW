@@ -5,7 +5,7 @@ function mostrarCajonComentario()
     document.getElementsByClassName("CajonComen")[0].style.visibility = "visible"
     /*Pongo el margin a que se vea más bonito*/
     document.getElementsByClassName("CajonComen")[0].style.margin = 0;
-    comentariosPredefinidos()
+    //comentariosPredefinidos() Esta función no es necesaria a partir de la práctica 3
 }
 
 /*Función que comprueba que todos los campos del formulario son correctos*/
@@ -74,10 +74,10 @@ function aniadirComentario(name,comentario)
     //Introduzco el div en el sitio correspondiente
     var seccion = document.getElementsByClassName("formulario")[0]
     document.getElementsByClassName("evento")[0].insertBefore(newDiv,seccion)
-    //Reseteo los valores del formulario
+    /*//Reseteo los valores del formulario
     document.getElementById("name").value = ""
     document.getElementById("email").value = ""
-    document.getElementById("comen").value = ""
+    document.getElementById("comen").value = ""*/
 }
 
 function comentariosPredefinidos()
@@ -160,12 +160,16 @@ function Check2Ban(arr)
 {
     var x
     var pos = -1
-    var ban = ["Mierda","Puto","mierda","puto","Gilipollas","gilipollas","Subnormal","subnormal","Retrasado","retrasado"]
-    for(var i = 0; i < ban.length; i++)
+
+    var p =[] 
+    p = document.getElementById("ban").value 
+    p = StringToArray(p)
+
+    for(var i = 0; i < p.length; i++)
     {
-        x = arr.indexOf(ban[i])
+        x = arr.indexOf(p[i])
         if(x != -1)
-            return ban[i].length
+            return p[i].length
     }
     return pos
 }

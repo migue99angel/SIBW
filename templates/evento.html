@@ -3,16 +3,10 @@
     {% block central %}
         <div class="evento">
             <div class="recomendaciones">
-                <p id="title">Puede que te interesen estas recomendaciones</p>
-                <!--Encapsulo las dos portadas juntas con los titulos, además encapsulo cada portada por separado-->
-                <!--Esto lo hago para facilitar el diseño responsive (ver uso en el index.css)-->
                 <div class="encPortadas">
-                    {% for recomendacion in evento['recomendaciones'] %}
                         <div class="encPor">
-                            <img class="rec" src= {{ recomendacion[0] }} />
-                            <p>{{ recomendacion[1] }}</p>
+                            <img src={{evento['portada']}} class="rec" />
                         </div>
-                    {% endfor %}
                 </div>
             </div>
             <div class="review">
@@ -49,7 +43,7 @@
 
                 <input type="submit" value="Comentar" onclick="mostrarCajonComentario()">
 
-                <form name="formulario" class="CajonComen">
+                <form name="formulario" class="CajonComen" method="post" action="nuevoComentario.php">
                     <label for "nombre" > Nombre </label>
                     <input id = "name" name="name" type="text" placeholder="Introduzca su nombre"></input>
 
@@ -57,13 +51,19 @@
                     <input id ="email" name="email" type="text" placeholder="Introduzca su correo electrónico"></input>
 
                     <label for "comentario" > Comentario </label>
-                    <input id="comen" name="comen" type="text" placeholder="Deja tu opinión sobre la película" oninput="censura()" ></input>
-                    <input type="button" value="Publicar" onclick="validarComentario()">
+                    <input id="comen" name="comentario" type="text" placeholder="Deja tu opinión sobre la película" oninput="censura()" ></input>
+                    <input name="pelicula" type="hidden" value={{evento['idPelicula']}}></input>
+                    <input type="submit"  value="Publicar" onclick="validarComentario()"> 
                 </form>
                 <!--Este div será en el que pondré los comentarios con javascript-->
                 <div class="comentarios">
                 </div>
             </div>
+            {% for comentario in evento['comentarios'] %}
+                <div class="Comentario"><h3>{{comentario[0]}}</h3><p>{{comentario[1]}}</p>{{comentario[2]}}</div>
+            {% endfor %} 
+
+            <input id="ban" value="{% for b in evento['ban'] %} {{ b }}{% endfor %}" />
             
         </div>
 {% endblock %}

@@ -35,10 +35,18 @@ CREATE TABLE escenas(
     PRIMARY KEY (idPelicula, idEscena)
 );
 
--- Creamos una tabla para las recomendaciones de cada película
-CREATE TABLE recomendaciones(
+-- Creamos la tabla para los comentarios de cada película
+CREATE TABLE comentarios(
     idPelicula INT NOT NULL REFERENCES eventos(idPelicula),
-    idRecomendacion INT NOT NULL,
-    idRecomendada INT NOT NULL,
-    PRIMARY KEY (idPelicula, idRecomendacion)
+    idComentario INT NOT NULL,
+    nombre VARCHAR(50),
+    comentario TEXT,
+    fecha DATE,
+    PRIMARY KEY (idPelicula, idComentario)
+);
+
+--Creo la tabla para las palabras prohibidas
+CREATE TABLE censura(
+    idPalabra INT AUTO_INCREMENT PRIMARY KEY,
+    palabra VARCHAR(50)
 );
