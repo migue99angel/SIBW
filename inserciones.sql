@@ -70,7 +70,126 @@ INSERT INTO escenas VALUES('3','1','img/goodfellas_escena_1.jpeg','Memorable esc
 INSERT INTO escenas VALUES('3','2','img/goodfellas_escena_2.jpeg','Escena en la que se aprecia a gran parte del elenco');
 
 
+--Intrucciones para la inserción de Como conoci a vuestra madre--
+INSERT INTO eventos (idPelicula ,nombre, director, fecha, review, portada, enlace) VALUES (4,'Cómo conocí a vuestra madre', 'Carter Bays  y Craig Thomas ','2005-9-19',
+            'Serie de TV (2005-2014). 9 temporadas. 208 episodios. Ted (Josh Radnor) les cuenta a sus dos hijos cómo conoció a su madre y cómo fue su vida hasta que,
+             por fin, encontró el amor verdadero. Contó para ello con la ayuda de su amigo Barney (Neil Patrick Harris), un joven algo extravagante, adicto a los somníferos 
+             y muy hábil para conocer mujeres. Cuando Ted conoce a Robin (Cobie Smulders), una impresionante joven canadiense que acaba de mudarse a Nueva York, 
+             está completamente seguro de que es amor a primera vista. ','img/himym.jpg','https://www.filmaffinity.com/es/film460960.html');
 
+INSERT INTO premios VALUES('4','1','2012: Emmy: Mejor montaje. 4 nominaciones, incluyendo mejor dir. artística');
+INSERT INTO premios VALUES('4','2','2011: Emmy: 5 nominaciones, incluyendo mejor dirección y montaje');
+INSERT INTO premios VALUES('4','3','2010: Emmy: 4 nominaciones, incluyendo mejor actor sec. (Neil Patrick Harris)');
+INSERT INTO premios VALUES('4','4','2009: Emmy: Mejor dir. artística. 4 nominaciones, incluyendo mejor secundario');
+INSERT INTO premios VALUES('4','5','2008: Emmy: Mejor dir. artística. Nominada a mejor actor sec. (Harris)');
+INSERT INTO premios VALUES('4','6','2007: Emmy: Mejor dir. artística. 3 nominaciones, incluyendo mejor secundario');
+
+INSERT INTO criticas VALUES('4','1','Robert Lloyd','"Una sitcom sobre la Generación Y considerablemente por encima de la media, que se las arregla para ser a la vez inteligente y sentimental, como "Seinfeld" pero con sentimiento" ');
+
+INSERT INTO criticas VALUES('4','2','Leonardo D’Espósito','"Es de esas que uno empieza a ver y se emboba durante horas sin poder parar porque, como toda serie que se precie, no se pone límites ni de género ni de inventiva."');
+
+INSERT INTO escenas VALUES('4','1','img/hijos.jpeg','Escena de los hijos del protagonista');
+INSERT INTO escenas VALUES('4','2','img/bar.jpeg','El elenco principal en el pub donde se reunen');
+
+--Intrucciones para la inserción de Chernobyl--
+INSERT INTO eventos (idPelicula, nombre, director, fecha, review, portada, enlace) VALUES (5,'Chernobyl', 'Craig Mazin  ','2019-5-06',
+            'Miniserie de TV (2019). 5 episodios. El 26 de abril de 1986, la Central Nuclear de Chernóbil, en Ucrania 
+            (por entonces perteneciente a la Unión Soviética), sufrió una explosión masiva que liberó material radioactivo en Ucrania,
+             Bielorrusia, Rusia, así como en zonas de Escandinavia y Europa Central. La serie relata, desde múltiples puntos de vista,
+              lo que aconteció en torno a una de las mayores tragedias en la historia reciente, así como los sacrificios realizados para salvar al continente de 
+              un desastre sin precedentes. ','img/Chernobyl.jpg','https://www.filmaffinity.com/es/film624827.html');
+
+INSERT INTO premios VALUES('5','1','2019: Globos de Oro: Mejor miniserie y actor secundario (Skarsgard). 4 nominacione');
+INSERT INTO premios VALUES('5','2','Emmy: 10 premios, incluyendo Mejor miniserie y guión. 19 nominaciones');
+INSERT INTO premios VALUES('5','3','American Film Institute (AFI): Top 10 - Mejores Programas de TV del año');
+
+
+INSERT INTO criticas VALUES('5','1','Carlos Boyero','La película de terror más angustiosa que he visto en años (...) Es una dolorosa obra de arte" ');
+
+INSERT INTO criticas VALUES('5','2','Marina Such','"Los episodios nos enseñan la magnitud del desastre con austeridad (...) Se toma muy en serio el tema que trata y, sobre todo, la tesis que quiere transmitir. Y consigue crear tensión e interés."');
+
+INSERT INTO escenas VALUES('5','1','img/chernobyl_escena_1.jpeg','Escena en la central nuclear');
+INSERT INTO escenas VALUES('5','2','img/chernobyl_escena_2.jpeg','');
+
+
+--Intrucciones para la inserción de Dark--
+INSERT INTO eventos (idPelicula,nombre, director, fecha, review, portada, enlace) VALUES (6,'Dark', 'Baran bo Odar  ','2017-12-01',
+            'Serie de TV (2017-Actualidad). Tras la desaparición de un joven, cuatro familias desesperadas tratan de entender lo ocurrido a medida que van desvelando 
+            un retorcido misterio que abarca tres décadas... Saga familiar con un giro sobrenatural, "Dark" se sitúa en un pueblo alemán, donde dos misteriosas desapariciones 
+            dejan al descubierto las dobles vidas y las relaciones resquebrajadas entre estas cuatro familias.','img/dark.jpg','https://www.filmaffinity.com/es/film103430.html');
+
+INSERT INTO premios VALUES('6','1','No tiene ningún premio a día de hoy');
+
+
+
+INSERT INTO criticas VALUES('6','1','Kaitlin Thomas','"[Crítica 2ª temporada]: Tiene muchas ambiciones narrativas y es capaz de satisfacerlas en todo momento (...) Todo lo que te gustó de la primera temporada está en la segunda" ');
+
+INSERT INTO criticas VALUES('6','2','Hanh Nguyen:','"[Crítica 2ª temporada]: Es rara y retorcida de manera desafiante y más adictiva que nunca (...) Ofrece un cóctel existencial en el que pocas series se atreven a entrar" ');
+
+INSERT INTO escenas VALUES('6','1','img/dark_escena_1.jpeg','');
+INSERT INTO escenas VALUES('6','2','img/dark_escena_2.jpeg','');
+
+
+--Intrucciones para la inserción de Django--
+INSERT INTO eventos (idPelicula,nombre, director, fecha, review, portada, enlace) VALUES (7,'Django desencadenado', 'Quentin Tarantino ','2012-01-18',
+            'En Texas, dos años antes de estallar la Guerra Civil Americana, King Schultz (Christoph Waltz), un cazarrecompensas alemán que sigue la pista a unos
+             asesinos para cobrar por sus cabezas, le promete al esclavo negro Django (Jamie Foxx) dejarlo en libertad si le ayuda a atraparlos. Él acepta, pues luego quiere 
+             ir a buscar a su esposa Broomhilda (Kerry Washington), esclava en una plantación del terrateniente Calvin Candie (Leonardo DiCaprio). ','img/Django.jpg','https://www.filmaffinity.com/es/film929558.html');
+
+INSERT INTO premios VALUES('7','1','2 Oscars: mejor guión original y actor secundario (Waltz). 5 nominaciones');
+INSERT INTO premios VALUES('7','2','2012: 2 Globos de Oro: Mejor guión y actor secundario (Waltz). 5 nominaciones');
+INSERT INTO premios VALUES('7','3','2012: Critics Choice Awards: Mejor guión original. Nominada a mejor película');
+
+
+INSERT INTO criticas VALUES('7','1','Luis Martínez','"Es a la vez compendio y exageración; resumen y disparate; locura y genio. Pocas veces, el más magnético de los directores vivos se antojó más inestable, divertido y, gran novedad, grave." ');
+
+INSERT INTO criticas VALUES('7','2','Carlos Boyero','"Django desencadenado me parece muy brillante. Le sobra alguna cosa. Pero pocas. Los diálogos son magníficos. Y qué placer ver y oir a ese actor insólito llamado Christoph Walz." ');
+
+INSERT INTO escenas VALUES('7','1','img/django_escena_1.jpeg','Famosa escena improvisada de Di Caprio');
+INSERT INTO escenas VALUES('7','2','img/django_escena_2.jpeg','');
+
+--Intrucciones para la inserción de Interestellar--
+INSERT INTO eventos (idPelicula,nombre, director, fecha, review, portada, enlace) VALUES (8,'Interstellar', 'Christopher Nolan ','2014-11-07',
+            'Al ver que la vida en la Tierra está llegando a su fin, un grupo de exploradores dirigidos por el piloto Cooper (McConaughey) y
+            la científica Amelia (Hathaway) emprende una misión que puede ser
+            la más importante de la historia de la humanidad: viajar más allá de nuestra galaxia para descubrir algún planeta en otra que pueda garantizar 
+            el futuro de la raza humana.','img/interstellar.jpg','https://www.filmaffinity.com/es/film704416.html');
+
+INSERT INTO premios VALUES('8','1','2014: Oscar: Mejores efectos visuales. 5 nominaciones incl. mejor banda sonora');
+INSERT INTO premios VALUES('8','2','2014: Globos de Oro: Nominada a Mejor banda sonora original');
+INSERT INTO premios VALUES('8','3','2014: Premios BAFTA: Mejores efectos especiales visuales');
+INSERT INTO premios VALUES('8','4','2014: American Film Institute (AFI): Top 10 - Mejores películas del año');
+INSERT INTO premios VALUES('8','5','2014: Satellite Awards: 3 nominaciones incluyendo Mejor fotografía');
+INSERT INTO premios VALUES('8','6','2014: Critics Choice Awards: Mejor película de ciencia ficción');
+
+INSERT INTO criticas VALUES('8','1','Luis Martínez','"Interstellar resulta por momentos pomposa; a ratos ingenua. (...) Y sin embargo, y pese a todo, se impone la magnificencia de un espectáculo capaz de asombrar con la misma fuerza que arrastra hacia dentro" ');
+
+INSERT INTO criticas VALUES('8','2','Oti Rodríguez Marchante','"Cine lleno de espacio, pero también de espiritualidad, de apoteosis y sentimiento, con imágenes, parajes, ideas y sensaciones equiparables en espectacularidad y en pulso reflexivo" ');
+
+INSERT INTO escenas VALUES('8','1','img/interstellar_escena_1.jpg','Cooper hablando con Murphy');
+INSERT INTO escenas VALUES('8','2','img/interstellar_escena_2.jpeg','');
+
+--Intrucciones para la inserción de Origen--
+INSERT INTO eventos (idPelicula,nombre, director, fecha, review, portada, enlace) VALUES (9,'Origen', 'Christopher Nolan ','2010-07-06',
+            'Dom Cobb (DiCaprio) es un experto en el arte de apropiarse, durante el sueño, de los secretos del subconsciente ajeno. La extraña habilidad de Cobb 
+            le ha convertido en un hombre muy cotizado en el mundo del espionaje, pero también lo ha condenado a ser un fugitivo y, por consiguiente, a renunciar a 
+            llevar una vida normal. Su única oportunidad para cambiar de vida será hacer exactamente lo contrario de lo que ha hecho siempre: la incepción,
+             que consiste en implantar una idea en el subconsciente en lugar de sustraerla. Sin embargo, su plan se complica debido a la intervención de alguien que parece predecir cada uno de sus movimientos,
+              alguien a quien sólo Cobb podrá descubrir.','img/Origen.jpg','https://www.filmaffinity.com/es/film971380.html');
+
+INSERT INTO premios VALUES('9','1','2010: 4 Oscars: mejor fotografía, sonido, ef. sonoros y visuales. 8 nominaciones');
+INSERT INTO premios VALUES('9','2','2010: Globos de Oro: 4 nominaciones: mejor película drama, director, guión, BSO');
+INSERT INTO premios VALUES('9','3','2010: 3 Premios BAFTA técnicos. 9 nominaciones, incluyendo mejor película y directo');
+INSERT INTO premios VALUES('9','4','2010: Satellite Awards: Mejor fotografía, dirección artística, BSO. 11 nominaciones');
+INSERT INTO premios VALUES('9','5','2010: Asociación de Críticos de los Angeles: Mejor diseño de producción');
+INSERT INTO premios VALUES('9','6','2010: American Film Institute (AFI): Top 10 - Mejores películas del año');
+
+INSERT INTO criticas VALUES('9','1','Jordi Costa','"Brillante, ambiciosa, estimulante y, también, tan excesiva como pagada de sí misma (...) el mejor Nolan se despliega con mayor generosidad que nunca"');
+
+INSERT INTO criticas VALUES('9','2','Quim Casas','"Apasionante (...) una de las obras mayores del cine fantástico contemporáneo (...)');
+
+INSERT INTO escenas VALUES('9','1','img/origen_escena_1.jpeg','');
+INSERT INTO escenas VALUES('9','2','img/origen_escena_2.jpeg','');
 
 
 --Palabras prohibidas

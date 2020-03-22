@@ -30,7 +30,7 @@
             </div>
                 <!--Sección correspondiente a la review y sinopsis de la película-->
                 <p>{{ review }}</p>
-                <a href={{ enlace }} class="fuente">Sinópsis por FILMAFFINITY</a>
+                <a href={{ evento['enlace'] }} class="fuente">Sinópsis por FILMAFFINITY</a>
                 <ul>
                     {% for premio in evento['premios'] %}
                         <li>{{ premio }}</li>
