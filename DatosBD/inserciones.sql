@@ -206,3 +206,12 @@ INSERT INTO censura values(10,'Subnormal');
 INSERT INTO censura values(11,'Gilipollas');
 INSERT INTO censura values(12,'gilipollas');
 
+
+--Fotografias de la galería
+INSERT INTO actores VALUES(4,1,'img/actor41.jpeg','Josh Radnor');
+INSERT INTO actores VALUES(4,2,'img/actor42.jpg','Neil Patrick Harris');
+INSERT INTO actores VALUES(4,3,'img/actor43.jpg','Jason Segel');
+INSERT INTO actores VALUES(4,4,'img/actor44.jpg','Alyson Hannigan');
+
+--Superusuario--
+INSERT INTO usuarios VALUES(LAST_INSERT_ID(),'miguelPosadas','$2y$10$KxSKGRjup/LTV1QNGA4IzuziGX.F4G/yo4ft7nPg83z.IKGHagarS','correo@prueba.es',666666666,'superusuario' );

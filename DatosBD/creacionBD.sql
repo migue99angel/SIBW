@@ -45,8 +45,28 @@ CREATE TABLE comentarios(
     PRIMARY KEY (idPelicula, idComentario)
 );
 
+-- Creamos la tabla para la galeria de cada evento
+CREATE TABLE actores(
+    idPelicula INT NOT NULL REFERENCES eventos(idPelicula),
+    idActor VARCHAR(100),
+    fotoActor VARCHAR(100),
+    nombreActor VARCHAR(100),
+    PRIMARY KEY (idPelicula,idActor)
+);
+
 --Creo la tabla para las palabras prohibidas
 CREATE TABLE censura(
     idPalabra INT AUTO_INCREMENT PRIMARY KEY,
     palabra VARCHAR(50)
+);
+
+
+--Creo la tabla para los usuarios
+CREATE TABLE usuarios(
+    idUsuario INT AUTO_INCREMENT PRIMARY KEY,
+    user VARCHAR(50) NOT NULL,
+    pass VARCHAR(100) NOT NULL,
+    email VARCHAR(50) NOT NULL,
+    phone INT,
+    rol VARCHAR(20) NOT NULL
 );

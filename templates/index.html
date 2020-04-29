@@ -8,23 +8,57 @@
     {% endblock %}
     {% block central %}
         <div class="contenido">
+        {% if not user %}
         <!--Código correspondiente al formulario de login-->
-        <div class="aux">
+        <div class="aux" id="login">
             <h1>Login here</h1>
-            <form>
+            <form method="post" action="login.php">
                 <label for "username"> Username </label>
-                <input type="text" placeholder="Enter Username"></input>
+                <input name="username" type="text" placeholder="Enter Username"></input>
 
                 <label for "password"> Password </label>
-                <input type="password" placeholder="Enter Password"></input>
+                <input name="password" type="password" placeholder="Enter Password"></input>
                 <!--Utilizo la etiqueta submit para los botones del login-->
                 <input type="submit" value="Log In">
-                <input type="submit" value="Sing Up">
+                <input type="button" value="Sing Up" onclick="mostrarRegistro()">
 
                 <a href="#">He olvidado mi contraseña</a>
 
             </form>
         </div>
+        
+        <div class="aux" id="regForm">
+            <h1>Sing up</h1>
+            <form method="post" action="registro.php">
+                <label for "username"> Username </label>
+                <input name="username" type="text" placeholder="Enter Username"></input>
+
+                <label for "password"> Password </label>
+                <input type="password" placeholder="Enter Password"></input>
+
+                <label for "confirm_password"> Confirm password </label>
+                <input type="password" placeholder="Enter Password"></input>
+
+                <label for "email"> Email </label>
+                <input name="email" type="text" placeholder="Enter email"></input>
+
+                <label for "phone_number"> Phone number </label>
+                <input name="phone_number" type="text" placeholder="Enter phone number"></input>
+                <!--Utilizo la etiqueta submit para el botón de registrarse-->
+                <input type="submit" value="Sing Up" onclick="">
+
+            </form>
+        </div>
+        {% else %}
+                <!--Código correspondiente al formulario de login-->
+                <div class="aux" id="login">
+                    <h1>Bienvenido, {{ user.user }} </h1>
+                    <form method="post" action="logout.php">
+                        <input type="submit"value="Log out" >
+                    </form>
+
+                </div>
+        {% endif %}
         <!--En el div main va el contenido principal de la página, esta formado por tres filas (clase row)-->
         <div class="main">
             <div class="row" id="primera">

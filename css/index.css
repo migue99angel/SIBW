@@ -138,6 +138,16 @@ body header p{
     border-radius: 20px;
 }
 
+.aux input[type="button"]{
+    border: none;
+    outline: none;
+    height: 40px;
+    background: red;
+    color: #fff;
+    font-size: 18px;
+    border-radius: 20px;
+}
+
 .aux input[type="submit"]:hover{
     background-color:darkred; 
 }
@@ -305,7 +315,6 @@ footer{
     color: white;
     text-align: center;
     height: 200px;
-    padding-top:100px ;
     margin:10px;
 }
 
@@ -576,4 +585,84 @@ footer{
 #ban{
     visibility: hidden;
     background-color: #000;
+}
+
+
+  
+div.gallery:hover {
+    border: 1px solid #777;
+  }
+  
+
+  
+div.desc {
+    padding: 15px;
+    text-align: center;
+    color:white;
+  }
+
+  @media(max-width: 1024px){
+    .conjuntoFotos{
+        margin-left: 3%;
+    }
+    div.gallery img {
+        width: 100%;
+        width: 200px;
+        height: 250px;
+      }
+    div.gallery {
+        margin: 1.5%;
+        border: 1px solid #ccc;
+        float: left;
+        width: 200px;
+      }
+  }
+  @media(max-width: 735px){
+    .conjuntoFotos{
+        margin-left: 15%;
+    }
+    div.gallery img {
+        width: 100%;
+        width: 250px;
+        height: 300px;
+      }
+      div.gallery {
+        margin: 1.5%;
+        border: 1px solid #ccc;
+        float: left;
+        width: 250px;
+      }
+  }
+
+
+  @media(min-width: 1025px){
+    .conjuntoFotos{
+        margin-left: 32.5%;
+    }
+    div.gallery img {
+        width: 100%;
+        width: 250px;
+        height: 300px;
+      }
+      div.gallery {
+        margin: 1.5%;
+        border: 1px solid #ccc;
+        float: left;
+        width: 250px;
+      }
+  }    
+.conjuntoFotos{
+    padding-top: 5%;
+    
+    padding-left: 5;
+}  
+
+
+
+/********** Estilo necesario para mostrar el formulario de resgistro en vez del de login *******/
+
+#regForm{
+    visibility: hidden;
+    position: absolute;
+    margin-top: -22.5%;
 }

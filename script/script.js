@@ -181,3 +181,13 @@ function banning(n)
         asteriscos.push("*")
     return String(asteriscos.join(""))    
 }
+
+
+/*Función que muestra el formulario para registro*/
+function mostrarRegistro()
+{
+    /*Cambio la propiedad visibility a visible para que el formulario se muestre*/
+    document.getElementById("login").style.visibility = "hidden"
+    document.getElementById("regForm").style.visibility = "visible"
+
+}

@@ -62,6 +62,17 @@
             {% for comentario in evento['comentarios'] %}
                 <div class="Comentario"><h3>{{comentario[0]}}</h3><p>{{comentario[1]}}</p>{{comentario[2]}}</div>
             {% endfor %} 
+            <!--Sección para la galería de fotos-->
+            <div class="conjuntoFotos">
+                {% if evento['actores'] != false %}
+                    {% for actor in evento['actores'] %}
+                        <div class="gallery">
+                            <img src= {{ actor[0] }} width="600" height="400">
+                            <div class="desc"> {{ actor[1] }}</div>
+                        </div>
+                    {% endfor %}
+                {% endif %} 
+            </div>
 
             <input id="ban" value="{% for b in evento['ban'] %} {{ b }}{% endfor %}" />
             
