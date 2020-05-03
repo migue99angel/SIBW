@@ -63,13 +63,14 @@ function cargarEvento($idPelicula)
         }
 
 
-        $res = $mysqli->query("SELECT nombre,comentario,fecha FROM comentarios WHERE idPelicula =" . $idPelicula);
+        $res = $mysqli->query("SELECT  idComentario,nombre,comentario,fecha FROM comentarios WHERE idPelicula =" . $idPelicula);
+        
         $i = 0;
         
         if($res->num_rows > 0)
         {
             while ($fila = $res->fetch_assoc()) {
-                $comentarios[$i] = [ $fila['nombre'], $fila['comentario'],$fila['fecha'] ];
+                $comentarios[$i] = [ $fila['idComentario'], $fila['nombre'], $fila['comentario'],$fila['fecha']];
                 $i = $i + 1;
             }
         }
@@ -141,38 +142,34 @@ function newUser($user, $pass, $email, $phone)
 
     if(is_string($user) && is_string($pass) && is_string($email) && is_int($phone))
     {
-        //Con el auto_increment se pone el id correspondiente pero hay que poner algo en esa parte de la consulta para que no de error
-        $res = $mysqli->query("INSERT INTO usuarios VALUES ('0','$user','$pass','$email','$phone','standard')" ) ;
-
+        $res = $mysqli->query("INSERT INTO usuarios (user,pass,email,phone,rol) VALUES ('$user','$pass','$email','$phone','standard')" ) ;
     }
 
     $mysqli->close();
 }
 
 
-function checkLogin($user,$pass)
-{
-    $mysqli = conexionBD();
-    $res = $mysqli->query("SELECT * FROM usuarios WHERE user ='$user'");
-    echo "veamos si hay resultados";
-    if($res->num_rows > 0)
+    function checkLogin($user,$pass)
     {
-        echo "vamos a validar";
-        $row = $res->fetch_assoc();
-        var_dump($row['pass']);
-        if (password_verify($pass, $row['pass'] ))
+        $mysqli = conexionBD();
+        $res = $mysqli->query("SELECT * FROM usuarios WHERE user ='$user'");
+        if($res->num_rows > 0)
         {
-            echo "bien";
-            return true;
-        }
-        else
-        {
-            echo "mal";
-            return false;
-        }
-    }
 
-}
+            $row = $res->fetch_assoc();
+            $id = -1;
+            if (password_verify($pass,$row['pass']))
+            {
+                $id = $row['idUsuario'];
+                return $id;
+            }
+            else
+            {
+                return $id;
+            }
+        }
+
+    }
 
 
 function cargarUsuario($user)
@@ -180,11 +177,29 @@ function cargarUsuario($user)
     $mysqli = conexionBD();
     $res = $mysqli->query("SELECT * FROM usuarios WHERE user ='$user'");
     $row = $res->fetch_assoc();
-    $usuario = ['user' => $row['user'], 'email' => $row['email'], 'phone' => $row['phone'], 'rol' =>$row['rol']];
-    
+    $usuario = ['id' => $row['idUsuario'],'user' => $row['user'], 'email' => $row['email'], 'phone' => $row['phone'], 'rol' =>$row['rol']];
+    $mysqli->close();
+
     return $usuario;
 
 }
 
+function actualizarUsuario($id,$username,$email,$phone)
+{
+    $mysqli = conexionBD();
+    $res = $mysqli->query("UPDATE usuarios SET user='$username', email='$email', phone='$phone' WHERE idUsuario='$id'");
+    $mysqli->close();
+}
+
+function eliminarComentario($idComen, $idEvento)
+{
+    if(is_int($idComen) && is_int($idEvento))
+    {
+        $mysqli = conexionBD();
+        $res = $mysqli->query("DELETE comentarios WHERE idComentario='$idComen',idPelicula='$idEvento'");
+        $mysqli->close();
+
+    }
+}
 
 ?>

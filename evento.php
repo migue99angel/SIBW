@@ -14,8 +14,16 @@
     $idPelicula = 1;
   }
 
+  session_start();
+  $usuario = [];
+
+  if(isset($_SESSION['username']))
+  {
+    $usuario = cargarUsuario($_SESSION['username']);
+  }
+
 
   $evento = cargarEvento($idPelicula);
 
-  echo $twig->render('evento.html', ['evento' => $evento]);
+  echo $twig->render('evento.html', ['evento' => $evento, 'usuario' => $usuario]);
 ?>

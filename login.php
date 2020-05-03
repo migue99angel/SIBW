@@ -6,21 +6,23 @@
     $twig = new \Twig\Environment($loader);
   
 
-  if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $user = $_POST['username'];
-    $pass = $_POST['password'];
+    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+        $user = $_POST['username'];
+        $pass = $_POST['password'];
 
+        $id = checkLogin($user, $pass);
+        if ($id != -1) {
+            session_start();
 
-    if (checkLogin($user, $pass)) {
-        session_start();
+            $_SESSION['username'] = $user;
+            $_SESSION['id'] = $id;
+            
+
+        }
+
+        header("Location: index.php");
         
-        $_SESSION['username'] = $user; 
-
-    }
-
-    header("Location: index.php");
-    
-    exit();
+        exit();
     
     }else{
         echo $twig->render('index.html', []); 

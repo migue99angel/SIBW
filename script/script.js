@@ -191,3 +191,10 @@ function mostrarRegistro()
     document.getElementById("regForm").style.visibility = "visible"
 
 }
+
+
+function modificarDatos(div)
+{
+    div.style.visibility = "hidden"
+    document.getElementById("cambiarMail").style.visibility = "visible"
+}

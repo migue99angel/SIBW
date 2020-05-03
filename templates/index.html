@@ -34,10 +34,10 @@
                 <input name="username" type="text" placeholder="Enter Username"></input>
 
                 <label for "password"> Password </label>
-                <input type="password" placeholder="Enter Password"></input>
+                <input name="password" type="password" placeholder="Enter Password"></input>
 
                 <label for "confirm_password"> Confirm password </label>
-                <input type="password" placeholder="Enter Password"></input>
+                <input name="confirm_password" type="password" placeholder="Enter Password"></input>
 
                 <label for "email"> Email </label>
                 <input name="email" type="text" placeholder="Enter email"></input>
@@ -51,8 +51,23 @@
         </div>
         {% else %}
                 <!--Código correspondiente al formulario de login-->
-                <div class="aux" id="login">
+                <div class="aux" id="data">
                     <h1>Bienvenido, {{ user.user }} </h1>
+                    <form method="post" action="actualizarPerfil.php">
+                        <label for "username"> Username </label>
+                        <input name="username" type="text" value={{ user.user }}></input>
+        
+                        <label for "email"> Email </label>
+                        <input name="email" type="text" value={{ user.email }}></input>
+        
+                        <label for "phone_number"> Phone number </label>
+                        <input name="phone_number" type="text" value={{ user.phone }}></input>
+
+                        <label for "rol"> Rol: {{ user.rol }} </label>
+                        <br/>
+                        <input type="submit"value="Actualizar perfil" >
+                    </form>
+                    
                     <form method="post" action="logout.php">
                         <input type="submit"value="Log out" >
                     </form>

@@ -40,7 +40,7 @@
                 {% for critica in evento['criticas'] %}
                     <p class="autor">{{critica[0]}} </p><p class="comentario">{{critica[1]}}</p>
                 {% endfor %}  
-
+                {% if  usuario %}
                 <input type="submit" value="Comentar" onclick="mostrarCajonComentario()">
 
                 <form name="formulario" class="CajonComen" method="post" action="nuevoComentario.php">
@@ -59,9 +59,30 @@
                 <div class="comentarios">
                 </div>
             </div>
+            
+
             {% for comentario in evento['comentarios'] %}
-                <div class="Comentario"><h3>{{comentario[0]}}</h3><p>{{comentario[1]}}</p>{{comentario[2]}}</div>
+                <div class="Comentario">
+                    {% set tag = usuario.rol %}
+                    {% if tag != 'standard' %}
+                    <div class="botonesComen">
+                        <form name="eliminar" method="post" action="eliminarComentario.php">
+                            <input class="boton" type="submit"value="Eliminar" >
+                            <input name="idComentario" type="hidden" value={{comentario[0]}}></input>
+                            <input name="idPelicula" type="hidden" value={{evento['idPelicula']}}></input>
+                        </form>
+                        <form name="modificar" method="post" action="modificarComentario.php">
+                            <input class="boton" type="submit"value="Editar" >
+                            <input name="idComentario" type="hidden" value={{comentario[0]}}></input>
+                            <input name="idPelicula" type="hidden" value={{evento['idPelicula']}}></input>
+                        </form>
+                    </div>
+                    {% endif %}
+                    <h3>{{comentario[1]}}</h3><p>{{comentario[2]}}</p>{{comentario[3]}}
+                </div>
             {% endfor %} 
+
+            
             <!--Sección para la galería de fotos-->
             <div class="conjuntoFotos">
                 {% if evento['actores'] != false %}
@@ -73,7 +94,7 @@
                     {% endfor %}
                 {% endif %} 
             </div>
-
+            {% endif %}
             <input id="ban" value="{% for b in evento['ban'] %} {{ b }}{% endfor %}" />
             
         </div>

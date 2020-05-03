@@ -65,7 +65,7 @@ CREATE TABLE censura(
 CREATE TABLE usuarios(
     idUsuario INT AUTO_INCREMENT PRIMARY KEY,
     user VARCHAR(50) NOT NULL,
-    pass VARCHAR(100) NOT NULL,
+    pass VARCHAR(255) NOT NULL,
     email VARCHAR(50) NOT NULL,
     phone INT,
     rol VARCHAR(20) NOT NULL

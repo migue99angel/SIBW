@@ -666,3 +666,29 @@ div.desc {
     position: absolute;
     margin-top: -22.5%;
 }
+
+#cambiarMail{
+    visibility: hidden;
+    margin-top: -22.5%;
+}
+
+#botonChiquito{
+    height: 10px;
+    width: 10px;
+    position: relative;
+}
+
+.boton{
+    border: none;
+    outline: none;
+    height: 100%;
+    background: red;
+    color: #fff;
+    font-size: 18px;
+    border-radius: 20px;
+    width: 100%;
+}
+
+.botonesComen{
+    display: inline-flex;
+}
