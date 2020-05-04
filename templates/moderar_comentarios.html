@@ -1,0 +1,39 @@
+{% extends "padre.html" %}
+{% block central %}
+{% set contador = 0 %}
+
+{% for comentario in comentarios %}
+    <div class="ComentarioModerador">
+        {% set tag = usuario.rol %}
+        {% if tag != 'standard' %}
+        <div class="botonesComen">
+            <form name="eliminar" method="post" action="eliminarComentario.php">
+                <input class="boton" type="submit"value="Eliminar" >
+                <input name="idComentario" type="hidden" value={{comentario[0]}}></input>
+                <input name="idPelicula" type="hidden" value={{comentario[5]}}></input>
+            </form>
+            <input class="boton" type="button" onclick="mostrarEditar({{ contador }})" value="Editar" >
+
+        </div>
+        {% endif %}
+        <h3>{{comentario[1]}}</h3>
+        <p>{{comentario[2]}}</p>
+        {{comentario[3]}}
+        <br/>
+        <br/>
+        {% if comentario[4] == 1 %}
+            <i>Este comentario ha sido editado por un moderador </i>
+        {% endif %}
+
+
+        <form class="formularioModerar" name="modificar" method="post" action="modificarComentario.php"> 
+            <input class="textoModerar" type="text" name="contenido" value="{{comentario[2]}}" ></input>
+            <input name="idPelicula" type="hidden" value={{comentario[5]}}></input>
+            <input name="idComentario" type="hidden" value={{comentario[0]}}></input>
+            <input class="boton" type="submit" value="Moderar" >
+        </form>
+    </div>
+    {% set contador = contador + 1 %}
+{% endfor %} 
+
+{% endblock %}

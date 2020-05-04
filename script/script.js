@@ -198,3 +198,8 @@ function modificarDatos(div)
     div.style.visibility = "hidden"
     document.getElementById("cambiarMail").style.visibility = "visible"
 }
+
+function mostrarEditar(n)
+{
+    document.getElementsByClassName("formularioModerar")[n].style.display = "inline"
+}

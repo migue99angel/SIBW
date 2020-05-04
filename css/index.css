@@ -315,7 +315,7 @@ footer{
     color: white;
     text-align: center;
     height: 200px;
-    margin:10px;
+    margin:5%;
 }
 
 /***********************************************************************************************************************************************/
@@ -516,7 +516,7 @@ footer{
 .CajonComen{
     padding-top: 2.5%;
     visibility: hidden;
-    margin-bottom: -25%;
+    margin-bottom: -10%;
 }
 
 .CajonComen input[type="submit"]{
@@ -686,9 +686,62 @@ div.desc {
     color: #fff;
     font-size: 18px;
     border-radius: 20px;
-    width: 100%;
+    width: 77px;
+    text-align: center;
 }
 
 .botonesComen{
     display: inline-flex;
+}
+
+#publicarComentario{
+    padding-top: 0;
+}
+
+#mostrarFormulario{
+    padding-top: -20%;
+    position: relative;
+}
+
+.escondido{
+    display: none;
+}
+
+.textoModerar{
+    border:none;
+    border-bottom: 1px solid red;
+    background: transparent;
+    outline: none;
+    height: 40px;
+    color: #000;
+    font-size: 16px;
+    width: 100%;
+    margin-bottom: 2%;
+}
+
+.formularioModerar{
+    display: none;
+}
+
+.ComentarioModerador{
+    background-color: #fff;
+    padding: 1.5%;
+    margin-top: 1.5%;
+    border-top: 2px solid rgb(255, 0, 0); 
+    border-bottom: 2px solid rgb(0, 0, 0);
+    border-radius: 15px;
+}
+@media(max-width: 1024px){
+    .ComentarioModerador{
+        height: 100%;
+        width: 96%;
+    }
+}
+
+@media(min-width: 1476px){
+    .ComentarioModerador{
+        height: 20%;
+        width: 72.5%;
+        margin-left: 22.5%;
+    }
 }

@@ -12,6 +12,8 @@
   {
     $variables['usuario'] = cargarUsuario($_SESSION['username']);
   }
+
+  $variables['comentarios'] = cargarComentarios();
   
-  echo $twig->render('index.html', $variables);
+  echo $twig->render('moderar_comentarios.html', $variables);
 ?>

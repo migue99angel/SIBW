@@ -1,5 +1,4 @@
 {% extends "padre.html" %}
-
     {% block central %}
         <div class="evento">
             <div class="recomendaciones">
@@ -41,25 +40,26 @@
                     <p class="autor">{{critica[0]}} </p><p class="comentario">{{critica[1]}}</p>
                 {% endfor %}  
                 {% if  usuario %}
-                <input type="submit" value="Comentar" onclick="mostrarCajonComentario()">
+
+                <br/>
+                <input id="mostrarFormulario" type="submit" value="Comentar" onclick="mostrarCajonComentario()">
 
                 <form name="formulario" class="CajonComen" method="post" action="nuevoComentario.php">
-                    <label for "nombre" > Nombre </label>
-                    <input id = "name" name="name" type="text" placeholder="Introduzca su nombre"></input>
+                    <input class="escondido" id = "name" name="name" type="text" value={{ usuario.user }}></input>
 
-                    <label for "email" > Email </label>
-                    <input id ="email" name="email" type="text" placeholder="Introduzca su correo electrónico"></input>
+                    <input class="escondido" id ="email" name="idUsuario" type="text" value={{ usuario.id }}></input>
 
                     <label for "comentario" > Comentario </label>
                     <input id="comen" name="comentario" type="text" placeholder="Deja tu opinión sobre la película" oninput="censura()" ></input>
                     <input name="pelicula" type="hidden" value={{evento['idPelicula']}}></input>
-                    <input type="submit"  value="Publicar" onclick="validarComentario()"> 
+                    <input id="publicarComentario" type="submit"  value="Publicar" > 
                 </form>
                 <!--Este div será en el que pondré los comentarios con javascript-->
                 <div class="comentarios">
                 </div>
             </div>
             
+            {% set contador = 0 %}
 
             {% for comentario in evento['comentarios'] %}
                 <div class="Comentario">
@@ -71,15 +71,28 @@
                             <input name="idComentario" type="hidden" value={{comentario[0]}}></input>
                             <input name="idPelicula" type="hidden" value={{evento['idPelicula']}}></input>
                         </form>
-                        <form name="modificar" method="post" action="modificarComentario.php">
-                            <input class="boton" type="submit"value="Editar" >
-                            <input name="idComentario" type="hidden" value={{comentario[0]}}></input>
-                            <input name="idPelicula" type="hidden" value={{evento['idPelicula']}}></input>
-                        </form>
+                        <input class="boton" type="button" onclick="mostrarEditar({{ contador }})" value="Editar" >
+
                     </div>
                     {% endif %}
-                    <h3>{{comentario[1]}}</h3><p>{{comentario[2]}}</p>{{comentario[3]}}
+                    <h3>{{comentario[1]}}</h3>
+                    <p>{{comentario[2]}}</p>
+                    {{comentario[3]}}
+                    <br/>
+                    <br/>
+                    {% if comentario[4] == 1 %}
+                        <i>Este comentario ha sido editado por un moderador </i>
+                    {% endif %}
+
+
+                    <form class="formularioModerar" name="modificar" method="post" action="modificarComentario.php"> 
+                        <input class="textoModerar" type="text" name="contenido" value="{{comentario[2]}}" ></input>
+                        <input name="idPelicula" type="hidden" value={{evento['idPelicula']}}></input>
+                        <input name="idComentario" type="hidden" value={{comentario[0]}}></input>
+                        <input class="boton" type="submit" value="Moderar" >
+                    </form>
                 </div>
+                {% set contador = contador + 1 %}
             {% endfor %} 
 
             

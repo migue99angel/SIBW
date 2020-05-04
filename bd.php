@@ -63,14 +63,14 @@ function cargarEvento($idPelicula)
         }
 
 
-        $res = $mysqli->query("SELECT  idComentario,nombre,comentario,fecha FROM comentarios WHERE idPelicula =" . $idPelicula);
+        $res = $mysqli->query("SELECT  idComentario,nombre,comentario,fecha,moderado FROM comentarios WHERE idPelicula =" . $idPelicula);
         
         $i = 0;
         
         if($res->num_rows > 0)
         {
             while ($fila = $res->fetch_assoc()) {
-                $comentarios[$i] = [ $fila['idComentario'], $fila['nombre'], $fila['comentario'],$fila['fecha']];
+                $comentarios[$i] = [ $fila['idComentario'], $fila['nombre'], $fila['comentario'],$fila['fecha'],$fila['moderado']];
                 $i = $i + 1;
             }
         }
@@ -107,13 +107,14 @@ function cargarEvento($idPelicula)
 
 }
 
-function newComent($idPelicula,$nombre,$correo,$comentario)
+function newComent($idPelicula,$idUsuario,$nombre,$comentario)
 {
-    $mysqli = conexionBD();
+    
 
-    if(is_int($idPelicula) && is_string($nombre) && is_string($correo) && is_string($comentario))
+    if(is_int($idPelicula) && is_string($nombre) && is_int($idUsuario) && is_string($comentario))
     {
-
+        $mysqli = conexionBD();
+        $fecha = date('Y-m-d'); 
         $res = $mysqli->query("SELECT idComentario FROM comentarios WHERE idPelicula =" . $idPelicula);
 
 
@@ -127,9 +128,7 @@ function newComent($idPelicula,$nombre,$correo,$comentario)
 
         $nComentario = $nComentario + 1;
 
-
-        $fecha = date('Y-m-d'); 
-        $res = $mysqli->query("INSERT INTO comentarios VALUES ('$idPelicula','$nComentario','$nombre','$comentario','$fecha')" ) ;
+        $res = $mysqli->query("INSERT INTO comentarios (idPelicula,idComentario,idUsuario,nombre,comentario,fecha,moderado) VALUES ('$idPelicula','$nComentario','$idUsuario','$nombre','$comentario','$fecha',0)" ) ;
 
         $mysqli->close();
 
@@ -196,10 +195,40 @@ function eliminarComentario($idComen, $idEvento)
     if(is_int($idComen) && is_int($idEvento))
     {
         $mysqli = conexionBD();
-        $res = $mysqli->query("DELETE comentarios WHERE idComentario='$idComen',idPelicula='$idEvento'");
+        $res = $mysqli->query("DELETE from comentarios WHERE idComentario='$idComen'AND idPelicula='$idEvento'");
         $mysqli->close();
 
     }
 }
+
+function updateComent($idPelicula,$idUsuario,$comentario)
+{
+    if(is_int($idPelicula) && is_int($idUsuario) && is_string($comentario))
+    {
+        $mysqli = conexionBD();
+        $res = $mysqli->query("UPDATE comentarios SET  comentario='$comentario', moderado=1 WHERE idPelicula='$idPelicula' AND idComentario='$idUsuario'");
+        $mysqli->close();
+    }
+}
+
+function cargarComentarios()
+{
+    $mysqli = conexionBD();
+    $res = $mysqli->query("SELECT  idComentario,idPelicula,nombre,comentario,fecha,moderado FROM comentarios");
+        
+    $i = 0;
+    
+    if($res->num_rows > 0)
+    {
+        while ($fila = $res->fetch_assoc()) {
+            $comentarios[$i] = [ $fila['idComentario'], $fila['nombre'], $fila['comentario'],$fila['fecha'],$fila['moderado'], $fila['idPelicula']];
+            $i = $i + 1;
+        }
+    }
+    echo "Hola Buenas tardes";
+    $mysqli->close();
+    return $comentarios;
+}
+
 
 ?>

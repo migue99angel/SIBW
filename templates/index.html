@@ -1,14 +1,7 @@
 {% extends "padre.html" %}
-    {% block enlaces %}
-        <li><a href='evento.php'>Series</a></li>
-        <li><a href='evento.php'>Peliculas</a></li>
-        <li><a href='evento.php'>Ranking películas</a></li>
-        <li><a href='evento.php'>Ranking series</a></li>
-        <li><a href='evento.php'>Contacto</a></li>
-    {% endblock %}
     {% block central %}
         <div class="contenido">
-        {% if not user %}
+        {% if not usuario %}
         <!--Código correspondiente al formulario de login-->
         <div class="aux" id="login">
             <h1>Login here</h1>
@@ -52,18 +45,18 @@
         {% else %}
                 <!--Código correspondiente al formulario de login-->
                 <div class="aux" id="data">
-                    <h1>Bienvenido, {{ user.user }} </h1>
+                    <h1>Bienvenido, {{ usuario.user }} </h1>
                     <form method="post" action="actualizarPerfil.php">
                         <label for "username"> Username </label>
-                        <input name="username" type="text" value={{ user.user }}></input>
+                        <input name="username" type="text" value={{ usuario.user }}></input>
         
                         <label for "email"> Email </label>
-                        <input name="email" type="text" value={{ user.email }}></input>
+                        <input name="email" type="text" value={{ usuario.email }}></input>
         
                         <label for "phone_number"> Phone number </label>
-                        <input name="phone_number" type="text" value={{ user.phone }}></input>
+                        <input name="phone_number" type="text" value={{ usuario.phone }}></input>
 
-                        <label for "rol"> Rol: {{ user.rol }} </label>
+                        <label for "rol"> Rol: {{ usuario.rol }} </label>
                         <br/>
                         <input type="submit"value="Actualizar perfil" >
                     </form>

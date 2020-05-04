@@ -39,9 +39,11 @@ CREATE TABLE escenas(
 CREATE TABLE comentarios(
     idPelicula INT NOT NULL REFERENCES eventos(idPelicula),
     idComentario INT NOT NULL,
+    idUsuario  INT NOT NULL REFERENCES usuarios(idUsuario),
     nombre VARCHAR(50),
     comentario TEXT,
     fecha DATE,
+    moderado BOOLEAN,
     PRIMARY KEY (idPelicula, idComentario)
 );
 
