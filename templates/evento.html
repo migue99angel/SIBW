@@ -18,6 +18,7 @@
                     <a href="http://www.facebook.com"><img src="img/facebook.png"/></a>
                     <a href="evento_imprimir.html"><img src="img/imprimir.jpg"/></a>
                 </div>
+                {% if  usuario %}
                 {% set tag = usuario.rol %}
                 {% if tag != 'standard' and tag != 'moderador' %}
                     <form name="eliminar" method="post" action="modificarEvento.php">
@@ -28,12 +29,25 @@
                     <br/>
                     <input class="editEvento" class="boton" type="button"value="Editar Evento" onclick="mostrarEditarEvento()" >
                 {% endif %}
+                {% endif %}
             <!--Div que contendrá las imágenes-->
             <div class="marco">
                 {% for escena in evento['escenas'] %}
                 <div class="encp">
                     <img class="escena" src= {{ escena[0] }} />
                     <p>{{ escena[1] }}</p>
+                    {% if  usuario %}
+                    {% set tag = usuario.rol %}
+                    {% if tag != 'standard' and tag != 'moderador' %}
+                        <form name="eliminar" method="post" action="eliminarEscena.php">
+                        <button type="submit">
+                            <img src="img/papelera.png" width="10px" height="10px"/>
+                        </button>
+                        <input name="idPelicula" type="hidden" value={{evento['idPelicula']}}></input>
+                        <input name="idEscena" type="hidden" value={{ escena[2] }}></input>
+                        </form>
+                    {% endif %}
+                    {% endif %}
                 </div>
                 {% endfor %}
             </div>
@@ -49,6 +63,18 @@
                 <h4>Críticas profesionales</h4>
                     {% for critica in evento['criticas'] %}
                         <p class="autor">{{critica[0]}} </p><p class="comentario">{{critica[1]}}</p>
+                        {% if  usuario %}
+                        {% set tag = usuario.rol %}
+                        {% if tag != 'standard' and tag != 'moderador' %}
+                            <form name="eliminar" method="post" action="eliminarCritica.php">
+                            <button type="submit">
+                                <img src="img/papelera.png" width="10px" height="10px"/>
+                            </button>
+                            <input name="idPelicula" type="hidden" value={{evento['idPelicula']}}></input>
+                            <input name="idCritica" type="hidden" value={{critica[2]}}></input>
+                            </form>
+                        {% endif %}
+                        {% endif %}
                     {% endfor %} 
                 {% endif %} 
                 {% if  usuario %}
@@ -124,7 +150,7 @@
             
         </div>
         <div class="EditarEvento">
-            <form method="post" action="nuevoEvento.php" enctype="multipart/form-data">
+            <form method="post" action="modificarEvento.php" enctype="multipart/form-data">
                 <label for "name"> Nombre del evento </label>
                 <input name="name" type="text" value="{{ evento['pelicula'] }}"></input>
     
@@ -135,30 +161,34 @@
                 <input name="fecha" type="text" value="{{ evento['fecha'] }}"></input>
     
                 <label for "review"> Review </label>
-                <input name="review" type="text" placeholder="Review"></input>
+                <input name="review" type="text" value="{{ evento['review'] }}"></input>
     
                 <label for "enlace"> Enlace filmaffinity </label>
-                <input name="enlace" type="text" placeholder="Enlace filmaffinity"></input>
+                <input name="enlace" type="text" value="{{ evento['enlace'] }}"></input>
     
-                <label for "portada"> Portada </label>
+                <label for "portada"> Portada (Introduzca una si desea cambiarla) </label>
                 <input type="file" name="portada" />
     
-                <label for "premio"> Premio </label>
+                <label for "premio"> Premio (Añadir un premio a la lista de premios) </label>
                 <input name="premio" type="text" placeholder="¿Any award?"></input>
     
-                <label for "escena"> Escena </label>
+                <label for "escena"> Escena (Añadir una escena)</label>
                 <input type="file" name="escena" />
     
                 <label for "premio"> Pie de escena </label>
                 <input name="pieEscena" type="text" placeholder="Describe the scene"></input>
     
-                <label for "nombreCritico"> Nombre crític@ </label>
+                <label for "nombreCritico"> Nombre crític@ (Añadir una nueva crítica) </label>
                 <input type="text" name="nombreCritico" placeholder="Nombre crític@"/>
     
                 <label for "critica"> Critica </label>
                 <input type="text" name="critica" placeholder="Valoración"/>
-                
+                <input name="eliminar" type="hidden" value=0 ></input>
+                <input name="idPelicula" type="hidden" value={{evento['idPelicula']}}></input>
+                <br/>
+                <br/>
                 <input type="submit" value="Actualizar">
             </form>
+            <br/>
         </div>
 {% endblock %}

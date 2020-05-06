@@ -40,24 +40,24 @@ function cargarEvento($idPelicula)
             }
         }
 
-        $res = $mysqli->query("SELECT redactor,critica FROM criticas WHERE idPelicula =" . $idPelicula);
+        $res = $mysqli->query("SELECT idCritica,redactor,critica FROM criticas WHERE idPelicula =" . $idPelicula);
         $i = 0;
         
         if($res->num_rows > 0)
         {
             while ($fila = $res->fetch_assoc()) {
-                $criticas[$i] = [ $fila['redactor'], $fila['critica'] ];
+                $criticas[$i] = [ $fila['redactor'], $fila['critica'],$fila['idCritica'] ];
                 $i = $i + 1;
             }
         }
 
-        $res = $mysqli->query("SELECT escena,descripcion FROM escenas WHERE idPelicula =" . $idPelicula);
+        $res = $mysqli->query("SELECT idEscena,escena,descripcion FROM escenas WHERE idPelicula =" . $idPelicula);
         $i = 0;
         
         if($res->num_rows > 0)
         {
             while ($fila = $res->fetch_assoc()) {
-                $escenas[$i] = [ $fila['escena'], $fila['descripcion'] ];
+                $escenas[$i] = [ $fila['escena'], $fila['descripcion'],$fila['idEscena'] ];
                 $i = $i + 1;
             }
         }
@@ -148,27 +148,27 @@ function newUser($user, $pass, $email, $phone)
 }
 
 
-    function checkLogin($user,$pass)
+function checkLogin($user,$pass)
+{
+    $mysqli = conexionBD();
+    $res = $mysqli->query("SELECT * FROM usuarios WHERE user ='$user'");
+    if($res->num_rows > 0)
     {
-        $mysqli = conexionBD();
-        $res = $mysqli->query("SELECT * FROM usuarios WHERE user ='$user'");
-        if($res->num_rows > 0)
+
+        $row = $res->fetch_assoc();
+        $id = -1;
+        if (password_verify($pass,$row['pass']))
         {
-
-            $row = $res->fetch_assoc();
-            $id = -1;
-            if (password_verify($pass,$row['pass']))
-            {
-                $id = $row['idUsuario'];
-                return $id;
-            }
-            else
-            {
-                return $id;
-            }
+            $id = $row['idUsuario'];
+            return $id;
         }
-
+        else
+        {
+            return $id;
+        }
     }
+
+}
 
 
 function cargarUsuario($user)
@@ -298,7 +298,7 @@ function addCritica($idPelicula, $nombreCritico, $critica)
 
     $idCritica = $res->num_rows;
 
-    $res = $mysqli->query("INSERT INTO criticas (idPelicula,idCritica,redactor,critica) VALUES ('$idPelicula','$idCritica','$nombreCritica','$critica')" ) ;
+    $res = $mysqli->query("INSERT INTO criticas (idPelicula,idCritica,redactor,critica) VALUES ('$idPelicula','$idCritica','$nombreCritico','$critica')" ) ;
 
 }
 
@@ -325,6 +325,51 @@ function deleteEvento($idPelicula)
     $res = $mysqli->query("DELETE FROM criticas WHERE idPelicula =" . $idPelicula);
     $res = $mysqli->query("DELETE FROM eventos WHERE idPelicula =" . $idPelicula);
 
+}
+
+function actualizarDatosEvento($name, $director, $fecha, $review, $enlace,$idPelicula)
+{
+    $mysqli = conexionBD();
+    $name = $mysqli->real_escape_string($name);
+    $director = $mysqli->real_escape_string($director);
+    $fecha = $mysqli->real_escape_string($fecha);
+    $review = $mysqli->real_escape_string($review);
+    $enlace = $mysqli->real_escape_string($enlace);
+
+    $res = $mysqli->query("UPDATE eventos SET  nombre='$name', director='$director',fecha='$fecha',review='$review', enlace='$enlace' WHERE idPelicula='$idPelicula' ");
+    $mysqli->close();
+}
+
+function actualizarPortada($idPelicula,$portada)
+{
+    $mysqli = conexionBD();
+    $portada = $mysqli->real_escape_string($portada);
+    $res = $mysqli->query("UPDATE eventos SET  portada='$portada' WHERE idPelicula='$idPelicula' ");
+    $mysqli->close();
+
+
+}
+
+function eliminarEscena($idEscena,$idPelicula)
+{
+    if(is_int($idEscena) && is_int($idPelicula))
+    {
+        $mysqli = conexionBD();
+        $res = $mysqli->query("DELETE from escenas WHERE idEscena='$idEscena'AND idPelicula='$idPelicula'");
+        $mysqli->close();
+
+    }
+}
+
+function eliminarCritica($idCritica,$idPelicula)
+{
+    if(is_int($idCritica) && is_int($idPelicula))
+    {
+        $mysqli = conexionBD();
+        $res = $mysqli->query("DELETE from criticas WHERE idCritica='$idCritica'AND idPelicula='$idPelicula'");
+        $mysqli->close();
+
+    }
 }
 
 ?>

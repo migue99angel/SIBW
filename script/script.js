@@ -205,3 +205,9 @@ function mostrarEditar(n)
 {
     document.getElementsByClassName("formularioModerar")[n].style.display = "inline"
 }
+
+function mostrarEditarEvento()
+{
+    document.getElementsByClassName("EditarEvento")[0].style.display = "inline"
+    document.getElementsByClassName("evento")[0].style.display = "none"
+}
