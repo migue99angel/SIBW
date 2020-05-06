@@ -61,57 +61,25 @@
                         <input type="submit"value="Actualizar perfil" >
                     </form>
                     
-                    <form method="post" action="logout.php">
+                    <form method="post" id="cerrarSesion" action="logout.php">
                         <input type="submit"value="Log out" >
                     </form>
 
                 </div>
         {% endif %}
-        <!--En el div main va el contenido principal de la página, esta formado por tres filas (clase row)-->
-        <div class="main">
-            <div class="row" id="primera">
-                <div class="portada" id="foto1">
-                    <a href="evento.php?pelicula=4"><img src="img/himym.jpg" class="foto">
-                    <p>Cómo conocí a vuestra madre</p></a>
-                </div>
-                <div class="portada" id="foto2">
-                    <a href="evento.php?pelicula=5"><img src="img/Chernobyl.jpg" class="foto">
-                    <p>Chernobyl</p></a>
-                </div>
-                <div class="portada" id="foto3">
-                    <a href="evento.php?pelicula=6"><img src="img/dark.jpg" class="foto">
-                    <p>Dark</p></a>
-                </div>
+        <div class="container">
+            {% for evento in eventos %}
+            <div class="item">
+                <a href="evento.php?pelicula={{ evento[0] }}"><img src={{ evento[2] }}>
+                    <p>{{ evento[1] }}</p></a>
             </div>
-            <div class="row" id="segunda">
-                <div class="portada" id="foto1">
-                    <a href="evento.php?pelicula=2"><img src="img/padrino.jpg" class="foto">
-                    <p>El padrino</p></a>
-                </div>
-                <div class="portada" id="foto2">
-                    <a href="evento.php?pelicula=1"><img src="img/pulp.jpg" class="foto">
-                    <p>Pulp fiction</p></a>
-                </div>
-                <div class="portada" id="foto3">
-                    <a href="evento.php?pelicula=3"><img src="img/unodelosnuestros.jpg" class="foto">
-                    <p>Goodfellas</p></a>
-                </div>
-            </div>
-            <div class="row" id="tercera">
-                <div class="portada" id="foto1">
-                    <a href="evento.php?pelicula=7"><img src="img/Django.jpg" class="foto">
-                    <p>Django</p></a>
-                </div>
-                <div class="portada" id="foto2">
-                    <a href="evento.php?pelicula=8"><img src="img/interstellar.jpg" class="foto">
-                    <p>Interestelar</p></a>
-                </div>
-                <div class="portada" id="foto3">
-                    <a href="evento.php?pelicula=9"><img src="img/Origen.jpg" class="foto">
-                    <p>Origen</p></a>
-                </div>
-            </div>
-            
+            {% endfor %}
         </div>
+        
+
+
+
+
+
     </div>
     {% endblock %}

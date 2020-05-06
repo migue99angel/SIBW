@@ -24,6 +24,9 @@
                             {% if tag != 'standard' %}
                             <li><a href='paginaModerarComentarios.php'>Moderar Comentarios</a></li>
                             {% endif %}
+                            {% if tag != 'standard' and tag != 'moderador' %}
+                            <li><a href='nuevoEvento.php'>Añadir evento</a></li>
+                            {% endif %}
                         {% endif %}
                     {% endblock %}
                 </ul>

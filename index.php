@@ -12,6 +12,9 @@
   {
     $variables['usuario'] = cargarUsuario($_SESSION['username']);
   }
+
+  $variables['eventos'] = cargarEventos();
+
   
   echo $twig->render('index.html', $variables);
 ?>

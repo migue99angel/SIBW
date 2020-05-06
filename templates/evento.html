@@ -18,6 +18,16 @@
                     <a href="http://www.facebook.com"><img src="img/facebook.png"/></a>
                     <a href="evento_imprimir.html"><img src="img/imprimir.jpg"/></a>
                 </div>
+                {% set tag = usuario.rol %}
+                {% if tag != 'standard' and tag != 'moderador' %}
+                    <form name="eliminar" method="post" action="modificarEvento.php">
+                        <input class="editEvento" class="boton" type="submit"value="Eliminar" >
+                        <input name="idPelicula" type="hidden" value={{evento['idPelicula']}}></input>
+                        <input name="eliminar" type="hidden" value=1 ></input>
+                    </form>
+                    <br/>
+                    <input class="editEvento" class="boton" type="button"value="Editar Evento" onclick="mostrarEditarEvento()" >
+                {% endif %}
             <!--Div que contendrá las imágenes-->
             <div class="marco">
                 {% for escena in evento['escenas'] %}
@@ -28,17 +38,19 @@
                 {% endfor %}
             </div>
                 <!--Sección correspondiente a la review y sinopsis de la película-->
-                <p>{{ review }}</p>
+                <p>{{ evento['review'] }}</p>
                 <a href={{ evento['enlace'] }} class="fuente">Sinópsis por FILMAFFINITY</a>
                 <ul>
                     {% for premio in evento['premios'] %}
                         <li>{{ premio }}</li>
                     {% endfor %}
                 </ul>
+                {% if  evento['criticas'] %}
                 <h4>Críticas profesionales</h4>
-                {% for critica in evento['criticas'] %}
-                    <p class="autor">{{critica[0]}} </p><p class="comentario">{{critica[1]}}</p>
-                {% endfor %}  
+                    {% for critica in evento['criticas'] %}
+                        <p class="autor">{{critica[0]}} </p><p class="comentario">{{critica[1]}}</p>
+                    {% endfor %} 
+                {% endif %} 
                 {% if  usuario %}
 
                 <br/>
@@ -110,5 +122,43 @@
             {% endif %}
             <input id="ban" value="{% for b in evento['ban'] %} {{ b }}{% endfor %}" />
             
+        </div>
+        <div class="EditarEvento">
+            <form method="post" action="nuevoEvento.php" enctype="multipart/form-data">
+                <label for "name"> Nombre del evento </label>
+                <input name="name" type="text" value="{{ evento['pelicula'] }}"></input>
+    
+                <label for "director"> Nombre del director </label>
+                <input name="director" type="text" value="{{ evento['director'] }}"></input>
+    
+                <label for "fecha"> Fecha (formato yyyy-mm-dd) </label>
+                <input name="fecha" type="text" value="{{ evento['fecha'] }}"></input>
+    
+                <label for "review"> Review </label>
+                <input name="review" type="text" placeholder="Review"></input>
+    
+                <label for "enlace"> Enlace filmaffinity </label>
+                <input name="enlace" type="text" placeholder="Enlace filmaffinity"></input>
+    
+                <label for "portada"> Portada </label>
+                <input type="file" name="portada" />
+    
+                <label for "premio"> Premio </label>
+                <input name="premio" type="text" placeholder="¿Any award?"></input>
+    
+                <label for "escena"> Escena </label>
+                <input type="file" name="escena" />
+    
+                <label for "premio"> Pie de escena </label>
+                <input name="pieEscena" type="text" placeholder="Describe the scene"></input>
+    
+                <label for "nombreCritico"> Nombre crític@ </label>
+                <input type="text" name="nombreCritico" placeholder="Nombre crític@"/>
+    
+                <label for "critica"> Critica </label>
+                <input type="text" name="critica" placeholder="Valoración"/>
+                
+                <input type="submit" value="Actualizar">
+            </form>
         </div>
 {% endblock %}

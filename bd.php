@@ -225,10 +225,106 @@ function cargarComentarios()
             $i = $i + 1;
         }
     }
-    echo "Hola Buenas tardes";
+
     $mysqli->close();
     return $comentarios;
 }
 
+function cargarEventos()
+{
+    $mysqli = conexionBD();
+    $res = $mysqli->query("SELECT idPelicula,nombre,portada FROM eventos");
+        
+    $i = 0;
+    if($res->num_rows > 0)
+    {
+        while ($fila = $res->fetch_assoc()) {
+            $eventos[$i] = [$fila['idPelicula'], $fila['nombre'], $fila['portada']];
+            $i = $i + 1;
+        }
+    }
+    $mysqli->close();
+    return $eventos;
+}
+
+function addEvento($name, $director, $fecha, $review, $enlace, $portada)
+{
+    $mysqli = conexionBD();
+    $name = $mysqli->real_escape_string($name);
+    $director = $mysqli->real_escape_string($director);
+    $fecha = $mysqli->real_escape_string($fecha);
+    $review = $mysqli->real_escape_string($review);
+    $enlace = $mysqli->real_escape_string($enlace);
+    $portada = $mysqli->real_escape_string($portada);
+
+    $res = $mysqli->query("INSERT INTO eventos (nombre,director,fecha,review,portada,enlace) VALUES ('$name','$director','$fecha','$review','$portada','$enlace')" ) ;
+
+    $con = $mysqli->query("SELECT idPelicula FROM eventos WHERE nombre='$name' AND director='$director'");
+    
+    $id = -1;
+
+    if($con->num_rows > 0)
+    {
+        $result = $con->fetch_assoc();
+        $id = (int)$result['idPelicula'];
+    }
+
+    $mysqli->close();    
+
+    return  $id;
+}
+
+function addPremio($idPelicula,$premio)
+{
+    $mysqli = conexionBD();
+    $premio = $mysqli->real_escape_string($premio); 
+    $idPelicula = (int) $idPelicula;
+
+    $res = $mysqli->query("SELECT  * FROM premios WHERE idPelicula =" . $idPelicula);
+
+    $idPremio = $res->num_rows;
+
+    $res = $mysqli->query("INSERT INTO premios (idPelicula,idPremio,premio) VALUES ('$idPelicula','$idPremio','$premio')" ) ;
+}
+
+function addCritica($idPelicula, $nombreCritico, $critica)
+{
+    $mysqli = conexionBD();
+    $nombreCritico = $mysqli->real_escape_string($nombreCritico); 
+    $critica = $mysqli->real_escape_string($critica); 
+    $idPelicula = (int) $idPelicula; 
+
+    $res = $mysqli->query("SELECT  * FROM criticas WHERE idPelicula =" . $idPelicula);
+
+    $idCritica = $res->num_rows;
+
+    $res = $mysqli->query("INSERT INTO criticas (idPelicula,idCritica,redactor,critica) VALUES ('$idPelicula','$idCritica','$nombreCritica','$critica')" ) ;
+
+}
+
+function addEscena($idPelicula, $escena, $descripcion)
+{
+    $mysqli = conexionBD();
+    $escena = $mysqli->real_escape_string($escena); 
+    $descripcion = $mysqli->real_escape_string($descripcion); 
+    $idPelicula = (int) $idPelicula;   
+
+    $res = $mysqli->query("SELECT  * FROM escenas WHERE idPelicula =" . $idPelicula);
+
+    $idEscena = $res->num_rows;
+
+    $res = $mysqli->query("INSERT INTO escenas (idPelicula,idEscena,escena,descripcion) VALUES ('$idPelicula','$idEscena','$escena','$descripcion')" ) ;
+}
+
+function deleteEvento($idPelicula)
+{
+    $mysqli = conexionBD();
+
+    $res = $mysqli->query("DELETE FROM eventos WHERE idPelicula =" . $idPelicula);
+    $res = $mysqli->query("DELETE FROM premios WHERE idPelicula =" . $idPelicula);
+    $res = $mysqli->query("DELETE FROM criticas WHERE idPelicula =" . $idPelicula);
+    $res = $mysqli->query("DELETE FROM eventos WHERE idPelicula =" . $idPelicula);
+
+}
 
 ?>

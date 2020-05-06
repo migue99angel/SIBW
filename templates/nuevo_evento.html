@@ -1,0 +1,43 @@
+{% extends "padre.html" %}
+    {% block central %}
+            
+    <div class="publicarEvento">
+        <h1>Introduce un nuevo evento</h1>
+        <form method="post" action="nuevoEvento.php" enctype="multipart/form-data">
+            <label for "name"> Nombre del evento </label>
+            <input name="name" type="text" placeholder="Film name"></input>
+
+            <label for "director"> Nombre del director </label>
+            <input name="director" type="text" placeholder="Film director"></input>
+
+            <label for "fecha"> Fecha (formato yyyy-mm-dd) </label>
+            <input name="fecha" type="text" placeholder="Enter Password"></input>
+
+            <label for "review"> Review </label>
+            <input name="review" type="text" placeholder="Review"></input>
+
+            <label for "enlace"> Enlace filmaffinity </label>
+            <input name="enlace" type="text" placeholder="Enlace filmaffinity"></input>
+
+            <label for "portada"> Portada </label>
+            <input type="file" name="portada" />
+
+            <label for "premio"> Premio </label>
+            <input name="premio" type="text" placeholder="¿Any award?"></input>
+
+            <label for "escena"> Escena </label>
+            <input type="file" name="escena" />
+
+            <label for "premio"> Pie de escena </label>
+            <input name="pieEscena" type="text" placeholder="Describe the scene"></input>
+
+            <label for "nombreCritico"> Nombre crític@ </label>
+            <input type="text" name="nombreCritico" placeholder="Nombre crític@"/>
+
+            <label for "critica"> Critica </label>
+            <input type="text" name="critica" placeholder="Valoración"/>
+            
+            <input type="submit" value="Publicar" onclick="">
+        </form>
+    </div>
+    {% endblock %}
