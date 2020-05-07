@@ -211,3 +211,17 @@ function mostrarEditarEvento()
     document.getElementsByClassName("EditarEvento")[0].style.display = "inline"
     document.getElementsByClassName("evento")[0].style.display = "none"
 }
+
+function mostrarModal(n)
+{
+    let cantidad = document.querySelectorAll('.modal').length;
+    for(var i = 0; i < cantidad; i++)
+        document.getElementsByClassName("modal")[i].style.display = "none";
+
+    document.getElementsByClassName("modal")[n].style.display = "block";
+}
+
+function cerrarModal(n)
+{
+    document.getElementsByClassName("modal")[n].style.display = "none";
+}

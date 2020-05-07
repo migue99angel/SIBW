@@ -320,11 +320,9 @@ function addEscena($idPelicula, $escena, $descripcion)
     $idPelicula = (int) $idPelicula;   
 
     $res = $mysqli->query("SELECT  * FROM escenas WHERE idPelicula =" . $idPelicula);
-
-    $idEscena = $res->num_rows +1;
+    $idEscena = $res->num_rows +2;
 
     $res = $mysqli->query("INSERT INTO escenas (idPelicula,idEscena,escena,descripcion) VALUES ('$idPelicula','$idEscena','$escena','$descripcion')" ) ;
-
     $mysqli->close(); 
 }
 

@@ -37,10 +37,10 @@
                 {% endif %}
             <!--Div que contendrá las imágenes-->
             <div class="marco">
-                {% for escena in evento['escenas'] %}
+
                 <div class="encp">
-                    <img class="escena" src= {{ escena[0] }} />
-                    <p>{{ escena[1] }}</p>
+                    <img class="escena" src= {{ evento.escenas[0][0] }} />
+                    <p>{{ evento.escenas[0][1] }}</p>
                     {% if  usuario %}
                     {% set tag = usuario.rol %}
                     {% if tag != 'standard' and tag != 'moderador' %}
@@ -49,13 +49,39 @@
                             <img src="img/papelera.png" width="10px" height="10px"/>
                         </button>
                         <input name="idPelicula" type="hidden" value={{evento['idPelicula']}}></input>
-                        <input name="idEscena" type="hidden" value={{ escena[2] }}></input>
+                        <input name="idEscena" type="hidden" value={{ evento.escenas[0][2] }}></input>
                         </form>
                     {% endif %}
                     {% endif %}
                 </div>
-                {% endfor %}
+
+                <button onclick="mostrarModal(0)">Ver galeria</button>
             </div>
+            {% set count = 0 %}
+            {% for escena in evento['escenas'] %}
+            <div class="modal" >
+                <h3 class="Escena 1"></h3>
+                <div class="imagen">
+                    <a><button onclick="mostrarModal({{ count }}-1)">&#60</button></a>
+                    <a href="" ><img src={{ escena[0] }} ></a>
+                    <a><button onclick="mostrarModal({{ count }}+1)"> > </button></a>
+                </div>
+                {% if  usuario %}
+                {% set tag = usuario.rol %}
+                {% if tag != 'standard' and tag != 'moderador' %}
+                    <form name="eliminar" method="post" action="eliminarEscena.php">
+                    <button type="submit">
+                        <img src="img/papelera.png" width="10px" height="10px"/>
+                    </button>
+                    <input name="idPelicula" type="hidden" value={{evento['idPelicula']}}></input>
+                    <input name="idEscena" type="hidden" value={{ escena[2] }}></input>
+                    </form>
+                {% endif %}
+                {% endif %}
+                <a class="cerrar" href=""><button onclick="cerrarModal({{ count }})">X</button></a>
+                {% set count = count + 1 %}
+            </div>
+            {% endfor %}
                 <!--Sección correspondiente a la review y sinopsis de la película-->
                 <p>{{ evento['review'] }}</p>
                 <a href={{ evento['enlace'] }} class="fuente">Sinópsis por FILMAFFINITY</a>

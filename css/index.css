@@ -795,3 +795,85 @@ div.desc {
     display: none ;
 }
 
+.galeria{
+    list-style: none;
+    width: 90%;
+    box-sizing: border-box;
+    padding: 20px;
+    margin: auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+.galeria img{
+    width: 250px;
+    height: 150px;
+}
+
+.galeria li{
+    margin: 5px;
+}
+
+/*********Estilo ventana modal***************/
+
+.modal{
+    position: fixed;
+    background: rgba(0,0,0,0.8);
+    top:0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: none;
+}
+
+.modal h3{
+    color: #ffffff;
+    font-size: 30px;
+    text-align: center;
+    margin: 15px 0;
+}
+
+.imagen{
+    width: 100%;
+    height: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.imagen a{
+    color: #ffffff;
+    font-size: 40px;
+    text-decoration: none;
+    margin: 0 10px;
+}
+
+.imagen img{
+    width: 800px;
+    height: 400px;
+    max-width: 100%;
+    box-sizing: border-box;
+}
+
+.imagen a:nth-child(2){
+    margin: 0;
+    height: 100%;
+    flex-shrink: 2;
+}
+
+.cerrar{
+    background-color: white;
+    display: block;
+    width: 25px;
+    height: 25px;
+    margin: 15px auto;
+    text-align: center;
+    text-decoration: none;
+    color: #000000;
+    font-size: 25px;
+    padding: 5px;
+    border-radius: 50%;
+    line-height: 25px;
+}
+
