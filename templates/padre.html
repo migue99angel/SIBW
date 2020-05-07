@@ -22,10 +22,14 @@
                         {% if  usuario %}
                             {% set tag = usuario.rol %}
                             {% if tag != 'standard' %}
-                            <li><a href='paginaModerarComentarios.php'>Moderar Comentarios</a></li>
+                                <li><a href='paginaModerarComentarios.php'>Moderar Comentarios</a></li>
                             {% endif %}
                             {% if tag != 'standard' and tag != 'moderador' %}
-                            <li><a href='nuevoEvento.php'>Añadir evento</a></li>
+                                <li><a href='nuevoEvento.php'>Añadir evento</a></li>
+                                <li><a href='paginaListarEventos.php'>Lista eventos</a></li>
+                            {% endif %}
+                            {% if tag == 'superusuario'  %}
+                                <li><a href='permisosUsuarios.php'>Permisos usuarios</a></li>
                             {% endif %}
                         {% endif %}
                     {% endblock %}

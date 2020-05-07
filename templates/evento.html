@@ -18,6 +18,11 @@
                     <a href="http://www.facebook.com"><img src="img/facebook.png"/></a>
                     <a href="evento_imprimir.html"><img src="img/imprimir.jpg"/></a>
                 </div>
+
+                {% if  evento['etiquetas'] %}
+                 <p>Géneros: {% for e in evento['etiquetas'] %} {{e}} {% endfor %}</p>
+                {% endif %}
+
                 {% if  usuario %}
                 {% set tag = usuario.rol %}
                 {% if tag != 'standard' and tag != 'moderador' %}
@@ -56,7 +61,20 @@
                 <a href={{ evento['enlace'] }} class="fuente">Sinópsis por FILMAFFINITY</a>
                 <ul>
                     {% for premio in evento['premios'] %}
-                        <li>{{ premio }}</li>
+                        <li>{{ premio[0] }}
+                            {% if  usuario %}
+                            {% set tag = usuario.rol %}
+                            {% if tag != 'standard' and tag != 'moderador' %}
+                                <form name="eliminar" method="post" action="eliminarPremio.php">
+                                <button type="submit">
+                                    <img src="img/papelera.png" width="10px" height="10px"/>
+                                </button>
+                                <input name="idPelicula" type="hidden" value={{evento['idPelicula']}}></input>
+                                <input name="idPremio" type="hidden" value={{ premio[1] }}></input>
+                                </form>
+                            {% endif %}
+                            {% endif %}
+                        </li>
                     {% endfor %}
                 </ul>
                 {% if  evento['criticas'] %}
@@ -183,6 +201,10 @@
     
                 <label for "critica"> Critica </label>
                 <input type="text" name="critica" placeholder="Valoración"/>
+
+                <label for "newTag"> Añade una nueva etiqueta </label>
+                <input type="text" name="newTag" placeholder="Acción, Drama, Aventuras ..."/>
+
                 <input name="eliminar" type="hidden" value=0 ></input>
                 <input name="idPelicula" type="hidden" value={{evento['idPelicula']}}></input>
                 <br/>

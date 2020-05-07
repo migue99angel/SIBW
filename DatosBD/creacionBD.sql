@@ -72,3 +72,10 @@ CREATE TABLE usuarios(
     phone INT,
     rol VARCHAR(20) NOT NULL
 );
+
+--Creo la tabla para las etiquetas
+CREATE TABLE etiquetas(
+    idPelicula INT NOT NULL REFERENCES eventos(idPelicula),
+    idEtiqueta INT AUTO_INCREMENT PRIMARY KEY,
+    etiqueta VARCHAR(50)
+);

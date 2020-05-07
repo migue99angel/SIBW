@@ -1,0 +1,30 @@
+{% extends "padre.html" %}
+{% block central %}
+{% set contador = 0 %}
+
+{% for u in usuarios %}
+<div class="ComentarioModerador" >
+
+    <form name="modificarPermisos" method="post" action="permisosUsuarios.php">
+        <p>Nombre de usuario: {{ u.user }}</p>
+        <p>Correo electrónico: {{ u.email }}</p>
+        <p>Número de teléfono: {{ u.phone }}</p>
+        <p>Rol Actual: {{ u.rol }}</p>
+        {% if u.id != 1 %}
+        <select name="newRol">
+            <option>standard</option>
+            <option>moderador</option>
+            <option >administrador</option>
+            <option >superusuario</option>
+        </select>
+        <input name="idUsuario" type="hidden" value={{u.id}}></input>
+        <input class="boton" type="submit" value="Actualizar" >
+        {% endif %}
+    </form>
+    <br/>
+    
+</div>
+
+{% endfor %} 
+
+{% endblock %}

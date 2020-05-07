@@ -28,14 +28,14 @@ function cargarEvento($idPelicula)
             $portada = $row['portada'];
         }
 
-        $res = $mysqli->query("SELECT premio FROM premios WHERE idPelicula =" . $idPelicula);
+        $res = $mysqli->query("SELECT idPremio,premio FROM premios WHERE idPelicula =" . $idPelicula);
         $i = 0;
 
         if($res->num_rows > 0)
         {
             /* obtener un array asociativo */
             while ($fila = $res->fetch_assoc()) {
-                $premios[$i] = $fila['premio'];
+                $premios[$i] = [$fila['premio'],$fila['idPremio']];
                 $i = $i + 1;
             }
         }
@@ -86,6 +86,17 @@ function cargarEvento($idPelicula)
             }
         }
 
+        $res = $mysqli->query("SELECT etiqueta FROM etiquetas WHERE idPelicula = " . $idPelicula);
+        $i = 0;
+        
+        if($res->num_rows > 0)
+        {
+            while ($fila = $res->fetch_assoc()) {
+                $etiquetas[$i] = $fila['etiqueta'];
+                $i = $i + 1;
+            }
+        }
+
         $res = $mysqli->query("SELECT fotoActor,nombreActor FROM actores WHERE idPelicula =" . $idPelicula);
         $i = 0;
         
@@ -102,7 +113,7 @@ function cargarEvento($idPelicula)
 
     $mysqli->close();
 
-    $evento = array('idPelicula'=>$idPelicula, 'pelicula' => $pelicula, 'director' => $director, 'fecha' =>$fecha, 'review' => $review, 'enlace' => $enlace, 'premios' => $premios, 'criticas' => $criticas, 'escenas' => $escenas, 'portada' => $portada, 'comentarios' => $comentarios,'ban' => $ban,'actores'=>$actores);
+    $evento = array('idPelicula'=>$idPelicula, 'pelicula' => $pelicula, 'director' => $director, 'fecha' =>$fecha, 'review' => $review, 'enlace' => $enlace, 'premios' => $premios, 'criticas' => $criticas, 'escenas' => $escenas, 'portada' => $portada, 'comentarios' => $comentarios,'ban' => $ban,'actores'=>$actores, 'etiquetas'=>$etiquetas);
     return $evento;
 
 }
@@ -282,7 +293,7 @@ function addPremio($idPelicula,$premio)
 
     $res = $mysqli->query("SELECT  * FROM premios WHERE idPelicula =" . $idPelicula);
 
-    $idPremio = $res->num_rows;
+    $idPremio = $res->num_rows+1;
 
     $res = $mysqli->query("INSERT INTO premios (idPelicula,idPremio,premio) VALUES ('$idPelicula','$idPremio','$premio')" ) ;
 }
@@ -295,11 +306,10 @@ function addCritica($idPelicula, $nombreCritico, $critica)
     $idPelicula = (int) $idPelicula; 
 
     $res = $mysqli->query("SELECT  * FROM criticas WHERE idPelicula =" . $idPelicula);
-
-    $idCritica = $res->num_rows;
+    
+    $idCritica = $res->num_rows+ 1;
 
     $res = $mysqli->query("INSERT INTO criticas (idPelicula,idCritica,redactor,critica) VALUES ('$idPelicula','$idCritica','$nombreCritico','$critica')" ) ;
-
 }
 
 function addEscena($idPelicula, $escena, $descripcion)
@@ -311,9 +321,11 @@ function addEscena($idPelicula, $escena, $descripcion)
 
     $res = $mysqli->query("SELECT  * FROM escenas WHERE idPelicula =" . $idPelicula);
 
-    $idEscena = $res->num_rows;
+    $idEscena = $res->num_rows +1;
 
     $res = $mysqli->query("INSERT INTO escenas (idPelicula,idEscena,escena,descripcion) VALUES ('$idPelicula','$idEscena','$escena','$descripcion')" ) ;
+
+    $mysqli->close(); 
 }
 
 function deleteEvento($idPelicula)
@@ -370,6 +382,52 @@ function eliminarCritica($idCritica,$idPelicula)
         $mysqli->close();
 
     }
+}
+
+function eliminarPremio($idPremio,$idPelicula)
+{
+    if(is_int($idPremio) && is_int($idPelicula))
+    {
+        $mysqli = conexionBD();
+        $res = $mysqli->query("DELETE from premios WHERE idPremio='$idPremio'AND idPelicula='$idPelicula'");
+        $mysqli->close();
+
+    }
+}
+
+function cargarListaUsuarios()
+{
+    $mysqli = conexionBD();
+    $res = $mysqli->query("SELECT * FROM usuarios");
+          
+    $i = 0;
+    if($res->num_rows > 0)
+    {
+        while ($fila = $res->fetch_assoc()) {
+            $usuarios[$i] = ['id' => $fila['idUsuario'],'user' => $fila['user'], 'email' => $fila['email'], 'phone' => $fila['phone'], 'rol' =>$fila['rol']];
+            $i = $i + 1;
+        }
+    }
+
+    $mysqli->close();
+    return $usuarios;
+}
+
+function actualizarPermisosUsuario($idUsuario, $newRol)
+{
+    $mysqli = conexionBD();
+    $newRol = $mysqli->real_escape_string($newRol);
+    $res = $mysqli->query("UPDATE usuarios SET  rol='$newRol' WHERE idUsuario='$idUsuario' ");
+    $mysqli->close();
+}
+
+function addEtiqueta($idPelicula,$newTag)
+{
+    $mysqli = conexionBD();
+    $newTag = $mysqli->real_escape_string($newTag); 
+    $idPelicula = (int) $idPelicula;
+    $res = $mysqli->query("INSERT INTO etiquetas (idPelicula,etiqueta) VALUES ('$idPelicula','$newTag')" ) ;
+    $mysqli->close();
 }
 
 ?>

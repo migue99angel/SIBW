@@ -588,6 +588,9 @@ div.desc {
     display: none;
 }
 
+.ComentarioModerador a{
+    text-decoration: none;
+}
 .ComentarioModerador{
     background-color: #fff;
     padding: 1.5%;
@@ -791,3 +794,4 @@ div.desc {
 .EditarEvento{
     display: none ;
 }
+

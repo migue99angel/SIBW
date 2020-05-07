@@ -29,6 +29,11 @@
                     addCritica($idPelicula,$_POST['nombreCritico'],$_POST['critica']);
                 }
 
+                if(isset($_POST['newTag']) && strlen($_POST['newTag']) > 0)
+                {
+                    addEtiqueta($idPelicula,$_POST['newTag']);
+                }
+
                 if(isset($_FILES['escena']) && isset($_POST['pieEscena']))
                 { 
                     $errors = [];
@@ -63,35 +68,36 @@
 
               if(isset($_FILES['portada']))
               { 
-                  $errors = [];
-                  $file_name = $_FILES['portada']['name'];
-                  $file_size = $_FILES['portada']['size'];
-                  $file_tmp = $_FILES['portada']['tmp_name'];
-                  $file_type = $_FILES['portada']['type'];
-                  $file_ext = strtolower(end(explode('.',$_FILES['portada']['name'])));
-                  
-                  $extensions= array("jpeg","jpg","png");
-       
-                if (in_array($file_ext,$extensions) === false){
-                  $errors[] = "Extensión no permitida, elige una imagen JPEG o PNG.";
-                }
-      
-                if ($file_size > 2097152){
-                    $errors[] = 'Tamaño del fichero demasiado grande';
-                }
-                
-                if (empty($errors)==true) {
-                    move_uploaded_file($file_tmp, "imagenesSubidas/" . $file_name);
+                    $errors = [];
+                    $file_name = $_FILES['portada']['name'];
+                    $file_size = $_FILES['portada']['size'];
+                    $file_tmp = $_FILES['portada']['tmp_name'];
+                    $file_type = $_FILES['portada']['type'];
+                    $file_ext = strtolower(end(explode('.',$_FILES['portada']['name'])));
                     
-                    $portada = "imagenesSubidas/" . $file_name;
-                }
-                
-                if (sizeof($errors) == 0) {
-                    actualizarPortada($idPelicula,$portada);
-                }
+                    $extensions= array("jpeg","jpg","png");
+        
+                    if (in_array($file_ext,$extensions) === false){
+                    $errors[] = "Extensión no permitida, elige una imagen JPEG o PNG.";
+                    }
+        
+                    if ($file_size > 2097152){
+                        $errors[] = 'Tamaño del fichero demasiado grande';
+                    }
+                    
+                    if (empty($errors)==true) {
+                        move_uploaded_file($file_tmp, "imagenesSubidas/" . $file_name);
+                        
+                        $portada = "imagenesSubidas/" . $file_name;
+                    }
+                    
+                    if (sizeof($errors) == 0) {
+                        actualizarPortada($idPelicula,$portada);
+                    }
       
                 
-            }
+                }
+
             }
         }
 

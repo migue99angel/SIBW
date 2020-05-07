@@ -1,0 +1,13 @@
+{% extends "padre.html" %}
+{% block central %}
+{% set contador = 0 %}
+
+{% for evento in eventos %}
+    <div class="ComentarioModerador" >
+        <a href="evento.php?pelicula={{ evento[0] }}">
+            <p>{{ evento[1] }}</p></a>
+    </div>
+
+{% endfor %} 
+
+{% endblock %}
