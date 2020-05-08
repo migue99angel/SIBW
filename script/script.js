@@ -225,3 +225,4 @@ function cerrarModal(n)
 {
     document.getElementsByClassName("modal")[n].style.display = "none";
 }
+

@@ -55,16 +55,16 @@
                     {% endif %}
                 </div>
 
-                <button onclick="mostrarModal(0)">Ver galeria</button>
+                <button class="botonGaleria" onclick="mostrarModal(0)">Ver galeria</button>
             </div>
             {% set count = 0 %}
             {% for escena in evento['escenas'] %}
             <div class="modal" >
                 <h3 class="Escena 1"></h3>
                 <div class="imagen">
-                    <a><button onclick="mostrarModal({{ count }}-1)">&#60</button></a>
+                    <a><button class="botonGaleria" onclick="mostrarModal({{ count }}-1)">&#60</button></a>
                     <a href="" ><img src={{ escena[0] }} ></a>
-                    <a><button onclick="mostrarModal({{ count }}+1)"> > </button></a>
+                    <a><button class="botonGaleria" onclick="mostrarModal({{ count }}+1)"> > </button></a>
                 </div>
                 {% if  usuario %}
                 {% set tag = usuario.rol %}
@@ -78,7 +78,7 @@
                     </form>
                 {% endif %}
                 {% endif %}
-                <a class="cerrar" href=""><button onclick="cerrarModal({{ count }})">X</button></a>
+                <a class="cerrar" href=""><button class="botonGaleria" onclick="cerrarModal({{ count }})">X</button></a>
                 {% set count = count + 1 %}
             </div>
             {% endfor %}
@@ -117,6 +117,7 @@
                             <input name="idPelicula" type="hidden" value={{evento['idPelicula']}}></input>
                             <input name="idCritica" type="hidden" value={{critica[2]}}></input>
                             </form>
+
                         {% endif %}
                         {% endif %}
                     {% endfor %} 

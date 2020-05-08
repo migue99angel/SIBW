@@ -756,7 +756,7 @@ div.desc {
     border-radius: 20px;
 }
 
-.publicarEvento input[type="button"],.EditarEvento input[type="button"] {
+.publicarEvento input[type="button"],.EditarEvento input[type="button"], .botonGaleria {
     border: none;
     outline: none;
     height: 40px;
@@ -863,7 +863,7 @@ div.desc {
 }
 
 .cerrar{
-    background-color: white;
+
     display: block;
     width: 25px;
     height: 25px;
