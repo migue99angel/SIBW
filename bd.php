@@ -428,4 +428,47 @@ function addEtiqueta($idPelicula,$newTag)
     $mysqli->close();
 }
 
+function buscarEventoPorPalabra($busqueda)
+{
+    $mysqli = conexionBD();
+    $busqueda = $mysqli->real_escape_string($busqueda); 
+    $res = $mysqli->query("SELECT * from eventos WHERE review LIKE '%$busqueda%' OR nombre LIKE '%$busqueda%' OR director LIKE '%$busqueda%'" ) ;
+    $i = 0;
+
+    $eventos = [];
+
+    if($res->num_rows > 0)
+    {
+        while ($fila = $res->fetch_assoc()) {
+            $eventos[$i] = [$fila['idPelicula'], $fila['nombre'], $fila['portada']];
+            $i = $i + 1;
+        }
+    }
+
+    $mysqli->close();
+    return $eventos;
+
+}
+
+function buscarComentarioPorPalabra($busqueda)
+{
+    $mysqli = conexionBD();
+    $busqueda = $mysqli->real_escape_string($busqueda); 
+
+    $res = $mysqli->query("SELECT  idComentario,idPelicula,nombre,comentario,fecha,moderado FROM comentarios WHERE comentario LIKE '%$busqueda%' OR nombre LIKE '%$busqueda%'");
+        
+    $i = 0;
+    
+    if($res->num_rows > 0)
+    {
+        while ($fila = $res->fetch_assoc()) {
+            $comentarios[$i] = [ $fila['idComentario'], $fila['nombre'], $fila['comentario'],$fila['fecha'],$fila['moderado'], $fila['idPelicula']];
+            $i = $i + 1;
+        }
+    }
+
+    $mysqli->close();
+    return $comentarios;
+}
+
 ?>

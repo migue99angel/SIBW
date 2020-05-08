@@ -2,6 +2,12 @@
 {% block central %}
 {% set contador = 0 %}
 
+<div id="barraBusquedaComentarios">
+    <form method="post" action="paginaModerarComentarios.php">
+        <input name="consulta" type="text" id="search" placeholder="Buscar comentario..." />
+    </form>
+  </div>
+
 {% for comentario in comentarios %}
     <div class="ComentarioModerador">
         {% set tag = usuario.rol %}

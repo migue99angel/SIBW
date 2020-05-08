@@ -7,13 +7,29 @@
 
   session_start();
   $variables = [];
+  $busqueda = false;
+  if ($_SERVER['REQUEST_METHOD'] === 'POST')
+  {
+    if(isset($_POST['consulta']) && $_POST['consulta'] != "")
+    {
+      $variables['eventos'] = buscarEventoPorPalabra($_POST['consulta']);
+      $busqueda = true;
+    }else
+    {
+      $busqueda = false;
+    }
+  }
 
   if(isset($_SESSION['username']))
   {
     $variables['usuario'] = cargarUsuario($_SESSION['username']);
   }
 
-  $variables['eventos'] = cargarEventos();
+  if($busqueda == false)
+  {
+    $variables['eventos'] = cargarEventos();
+  }
+    
 
   
   echo $twig->render('index.html', $variables);
