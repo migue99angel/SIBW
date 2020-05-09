@@ -9,7 +9,11 @@
         $idPelicula = (int)$_POST['idPelicula'];
         $eliminar = (int)$_POST['eliminar'];
         if($eliminar == 1)
+        {
             deleteEvento($idPelicula);
+            header("Location: http://localhost/");
+            exit();
+        }
         else
         {
             if($eliminar == 0)

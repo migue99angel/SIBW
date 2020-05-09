@@ -20,6 +20,11 @@
     }
   }
 
+  if(isset($_GET['error']))
+  {
+    $variables['error'] = (int) $_GET['error'];
+  }
+
   if(isset($_SESSION['username']))
   {
     $variables['usuario'] = cargarUsuario($_SESSION['username']);

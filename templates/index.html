@@ -18,6 +18,15 @@
                 <a href="#">He olvidado mi contraseña</a>
 
             </form>
+            {% if error %}
+                {% if error == 1 %}
+                    <p>Ha ocurrido un error en el registro</p>
+                {% endif %}
+
+                {% if error == 2 %}
+                <p>Ha ocurrido un error en el inicio de sesión</p>
+                {% endif %}
+            {% endif %}
         </div>
         
         <div class="aux" id="regForm">

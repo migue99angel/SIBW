@@ -39,7 +39,7 @@
             <div class="marco">
 
                 <div class="encp">
-                    <img class="escena" src= {{ evento.escenas[0][0] }} />
+                    <img class="escena" src="{{ evento.escenas[0][0] }}" />
                     <p>{{ evento.escenas[0][1] }}</p>
                     {% if  usuario %}
                     {% set tag = usuario.rol %}
@@ -63,7 +63,7 @@
                 <h3 class="Escena 1"></h3>
                 <div class="imagen">
                     <a><button class="botonGaleria" onclick="mostrarModal({{ count }}-1)">&#60</button></a>
-                    <a href="" ><img src={{ escena[0] }} ></a>
+                    <a href="" ><img src="{{ escena[0] }}" ></a>
                     <a><button class="botonGaleria" onclick="mostrarModal({{ count }}+1)"> > </button></a>
                 </div>
                 {% if  usuario %}

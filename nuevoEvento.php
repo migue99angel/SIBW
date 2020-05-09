@@ -42,13 +42,13 @@
         $id = -1;
         $id = addEvento($_POST['name'],$_POST['director'],$_POST['fecha'],$_POST['review'],$_POST['enlace'],$portada);
 
-        if(isset($_POST['premio']) && is_string($_POST['premio']))
+        if(isset($_POST['premio']) && is_string($_POST['premio']) && strlen($_POST['premio']) > 0)
         {
           addPremio($id,$_POST['premio']);
         }
 
 
-        if(isset($_POST['nombreCritico']) && is_string($_POST['critica']))
+        if(isset($_POST['nombreCritico']) && is_string($_POST['critica']) && strlen($_POST['critica']) > 0  && strlen($_POST['nombreCritico']) > 0)
         {
           addCritica($id,$_POST['nombreCritico'],$_POST['critica']);
         }

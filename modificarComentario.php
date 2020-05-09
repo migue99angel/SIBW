@@ -12,7 +12,7 @@
     $host  = $_SERVER['HTTP_HOST'];
     $extra = 'evento.php';
     
-    header("Location: http://localhost/$extra?pelicula=$idPelicula ");
+    header("Location: $extra?pelicula=$idPelicula ");
     exit;
 
 ?>

@@ -880,9 +880,13 @@ div.desc {
 .barraBusqueda{
     float: right;
     margin-right: 5%;
-    margin-top: -3%;
-    width: 50%;
+    margin-top: 0%;
+    width: 25%;
     height: 25%;
+}
+
+.barraBusqueda input[type="text"]{
+    width: 100%;
 }
 
 #search{

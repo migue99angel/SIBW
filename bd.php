@@ -120,11 +120,13 @@ function cargarEvento($idPelicula)
 
 function newComent($idPelicula,$idUsuario,$nombre,$comentario)
 {
-    
+    $mysqli = conexionBD();
+    $nombre = $mysqli->real_escape_string($nombre); 
+    $comentario = $mysqli->real_escape_string($comentario); 
 
-    if(is_int($idPelicula) && is_string($nombre) && is_int($idUsuario) && is_string($comentario))
+    if(is_int($idPelicula) && is_int($idUsuario))
     {
-        $mysqli = conexionBD();
+        
         $fecha = date('Y-m-d'); 
         $res = $mysqli->query("SELECT idComentario FROM comentarios WHERE idPelicula =" . $idPelicula);
 
@@ -149,8 +151,11 @@ function newComent($idPelicula,$idUsuario,$nombre,$comentario)
 function newUser($user, $pass, $email, $phone)
 {
     $mysqli = conexionBD();
+    $user = $mysqli->real_escape_string($user); 
+    $pass = $mysqli->real_escape_string($pass); 
+    $email = $mysqli->real_escape_string($email); 
 
-    if(is_string($user) && is_string($pass) && is_string($email) && is_int($phone))
+    if(is_int($phone))
     {
         $res = $mysqli->query("INSERT INTO usuarios (user,pass,email,phone,rol) VALUES ('$user','$pass','$email','$phone','standard')" ) ;
     }
@@ -162,6 +167,9 @@ function newUser($user, $pass, $email, $phone)
 function checkLogin($user,$pass)
 {
     $mysqli = conexionBD();
+    $user = $mysqli->real_escape_string($user); 
+    $pass = $mysqli->real_escape_string($pass); 
+
     $res = $mysqli->query("SELECT * FROM usuarios WHERE user ='$user'");
     if($res->num_rows > 0)
     {
@@ -177,6 +185,9 @@ function checkLogin($user,$pass)
         {
             return $id;
         }
+    }
+    else{
+        return -1;
     }
 
 }
@@ -445,6 +456,40 @@ function buscarEventoPorPalabra($busqueda)
         }
     }
 
+    $tags = $mysqli->query("SELECT * from eventos e,etiquetas et WHERE e.idPelicula = et.idPelicula AND etiqueta LIKE '%$busqueda%'" ) ;
+
+    $eventosEtiqueta = [];
+    $j = 0;
+    if($tags->num_rows > 0)
+    {
+        while ($fila = $tags->fetch_assoc()) {
+            $eventosEtiqueta[$j] = [$fila['idPelicula'], $fila['nombre'], $fila['portada']];
+            $j = $j + 1;
+        }
+    }
+    if($j > 0)
+    {
+        $encontrado = false;
+        for ($x = 0; $x < $j; $x++)
+        {
+            for ($y = 0; ($y < $i) && !$encontrado; $y++)
+            {
+                if($eventos[$y] == $eventosEtiqueta[$x])
+                {
+                    $encontrado = true;
+                }
+            }
+            if(!$encontrado)
+            {
+                $i = $i + 1;
+                $eventos[$i] = $eventosEtiqueta[$x];
+            }
+
+            $encontrado = false;
+        }
+    }
+
+
     $mysqli->close();
     return $eventos;
 
@@ -466,6 +511,8 @@ function buscarComentarioPorPalabra($busqueda)
             $i = $i + 1;
         }
     }
+
+    
 
     $mysqli->close();
     return $comentarios;
