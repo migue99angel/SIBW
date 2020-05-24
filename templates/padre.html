@@ -8,6 +8,7 @@
         <link rel="stylesheet" href="css/index.css">
         <!--Esta sección es la encargada de asignarle un favicon(logo que sale junto al nombre de la pestaña en el navegador) a la página-->
         <link rel="shortcut icon" type="image/png" href="img/favicon.png"/>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
         <script type="text/javascript" src="script/script.js"></script>
     </head>
     <body>
@@ -35,10 +36,12 @@
                     {% endblock %}
                 </ul>
                 <div class="barraBusqueda">
-                    <form method="post" action="index.php">
-                        <input name="consulta" type="text" id="search" placeholder="Search..." />
+                    <form method="post" autocomplete="off" action="index.php">
+                        <input name="consulta" onkeyup="busquedaAjax(this.value)" type="text" id="search" placeholder="Search..." />
+                        <div id="livesearch"></div>
                     </form>
-                  </div>
+                </div>
+                
             </nav>
         </header>
 

@@ -226,3 +226,43 @@ function cerrarModal(n)
     document.getElementsByClassName("modal")[n].style.display = "none";
 }
 
+  
+function busquedaAjax(consulta) {
+    $.ajax({
+        data: {consulta},
+        url: 'busqueda.php',
+        type: 'get',
+        success: function(respuesta) {
+            procesaRespuestaAjax(respuesta);
+        }
+    });
+}
+
+function procesaRespuestaAjax(respuesta) {
+    var resultados = Array();
+    for(var i = 0; i < respuesta.length; i++)
+         resultados.push({'nombre' : respuesta[i][1], 'id':respuesta[i][0]});
+
+    console.log(resultados)
+
+   mostrarResultados(resultados);
+
+}
+
+function mostrarResultados(str) {
+    if (str.length==0) {
+      document.getElementById("livesearch").innerHTML="";
+      document.getElementById("livesearch").style.border="0px";
+      return;
+    }
+
+    var res = "";
+
+    for(i = 0; i < str.length; ++i) {
+        res += "<a href=\"/evento.php?pelicula=" + str[i]['id'] + "\">" + str[i]['nombre'] + "</a><br><br>";
+    }
+
+    document.getElementById("livesearch").style.border="1px solid #A5ACB2";
+    $("#livesearch").html(res);
+
+  }
