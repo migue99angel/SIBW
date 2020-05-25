@@ -79,3 +79,6 @@ CREATE TABLE etiquetas(
     idEtiqueta INT AUTO_INCREMENT PRIMARY KEY,
     etiqueta VARCHAR(50)
 );
+
+
+ALTER TABLE eventos ADD Publicado INT;

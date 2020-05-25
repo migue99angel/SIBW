@@ -33,6 +33,20 @@
                     </form>
                     <br/>
                     <input class="editEvento" class="boton" type="button"value="Editar Evento" onclick="mostrarEditarEvento()" >
+
+                {% if evento['publicado'] == 0 %}
+                    <p>Visibilidad: Público</p>
+                {% else %}
+                    <p>Visibilidad: Privado</p>
+                {% endif %}
+                    <form name="cambiarVisibilidad" method="post" action="paginaListarEventos.php">
+                        <input class="editEvento" class="boton" type="submit"value="Cambiar Visibilidad" >
+                        <input name="idPelicula" type="hidden" value={{evento['idPelicula']}}></input>
+                        <select name="visibilidad">
+                            <option>Público</option>
+                            <option>Privado</option>
+                        </select>
+                    </form>
                 {% endif %}
                 {% endif %}
             <!--Div que contendrá las imágenes-->

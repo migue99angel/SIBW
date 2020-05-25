@@ -12,7 +12,7 @@
   {
     if(isset($_POST['consulta']) && $_POST['consulta'] != "")
     {
-      $variables['eventos'] = buscarEventoPorPalabra($_POST['consulta']);
+      $variables['eventos'] = buscarEventoPorPalabra($_POST['consulta'],$_SESSION['id']);
       $busqueda = true;
     }else
     {
@@ -32,7 +32,7 @@
 
   if($busqueda == false)
   {
-    $variables['eventos'] = cargarEventos();
+    $variables['eventos'] = cargarEventos($_SESSION['id']);
   }
     
 

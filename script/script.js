@@ -239,6 +239,7 @@ function busquedaAjax(consulta) {
 }
 
 function procesaRespuestaAjax(respuesta) {
+    
     var resultados = Array();
     for(var i = 0; i < respuesta.length; i++)
          resultados.push({'nombre' : respuesta[i][1], 'id':respuesta[i][0]});

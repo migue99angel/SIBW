@@ -16,7 +16,7 @@ function cargarEvento($idPelicula)
     $mysqli = conexionBD();
     if(is_int($idPelicula))
     {
-        $res = $mysqli->query("SELECT nombre, director, fecha, review, enlace, portada FROM eventos WHERE idPelicula =" . $idPelicula);
+        $res = $mysqli->query("SELECT nombre, director, fecha, review, enlace, portada, Publicado FROM eventos WHERE idPelicula =" . $idPelicula);
         if($res->num_rows > 0)
         {
             $row = $res->fetch_assoc();
@@ -26,6 +26,7 @@ function cargarEvento($idPelicula)
             $review = $row['review'];
             $enlace = $row['enlace'];
             $portada = $row['portada'];
+            $publicado = $row['Publicado'];
         }
 
         $res = $mysqli->query("SELECT idPremio,premio FROM premios WHERE idPelicula =" . $idPelicula);
@@ -113,7 +114,7 @@ function cargarEvento($idPelicula)
 
     $mysqli->close();
 
-    $evento = array('idPelicula'=>$idPelicula, 'pelicula' => $pelicula, 'director' => $director, 'fecha' =>$fecha, 'review' => $review, 'enlace' => $enlace, 'premios' => $premios, 'criticas' => $criticas, 'escenas' => $escenas, 'portada' => $portada, 'comentarios' => $comentarios,'ban' => $ban,'actores'=>$actores, 'etiquetas'=>$etiquetas);
+    $evento = array('idPelicula'=>$idPelicula, 'pelicula' => $pelicula, 'director' => $director, 'fecha' =>$fecha, 'review' => $review, 'enlace' => $enlace,'premios' => $premios, 'criticas' => $criticas, 'escenas' => $escenas, 'portada' => $portada, 'comentarios' => $comentarios,'ban' => $ban,'actores'=>$actores, 'etiquetas'=>$etiquetas,'publicado'=> $publicado );
     return $evento;
 
 }
@@ -252,16 +253,32 @@ function cargarComentarios()
     return $comentarios;
 }
 
-function cargarEventos()
+function cargarEventos($id)
 {
     $mysqli = conexionBD();
-    $res = $mysqli->query("SELECT idPelicula,nombre,portada FROM eventos");
+
+    $id = (int)$id;  
+    $aux = $mysqli->query("SELECT rol from usuarios WHERE idUsuario='$id' ") ;
+    if($aux->num_rows > 0)
+    {
+        $rol = $aux->fetch_assoc();
+    }
+
+    if(strcasecmp($rol['rol'],"superusuario") != 0 || strcasecmp($rol['rol'],"administrador") != 0)
+    {
+        $res = $mysqli->query("SELECT idPelicula,nombre,portada,Publicado FROM eventos WHERE Publicado=0");
+    } 
+    if(strcasecmp($rol['rol'],"superusuario") == 0 || strcasecmp($rol['rol'],"administrador") == 0)
+    {
+        $res = $mysqli->query("SELECT idPelicula,nombre,portada,Publicado FROM eventos");
+    }
+
         
     $i = 0;
     if($res->num_rows > 0)
     {
         while ($fila = $res->fetch_assoc()) {
-            $eventos[$i] = [$fila['idPelicula'], $fila['nombre'], $fila['portada']];
+            $eventos[$i] = [$fila['idPelicula'], $fila['nombre'], $fila['portada'], $fila['Publicado']];
             $i = $i + 1;
         }
     }
@@ -439,11 +456,27 @@ function addEtiqueta($idPelicula,$newTag)
     $mysqli->close();
 }
 
-function buscarEventoPorPalabra($busqueda)
+function buscarEventoPorPalabra($busqueda, $id)
 {
     $mysqli = conexionBD();
-    $busqueda = $mysqli->real_escape_string($busqueda); 
-    $res = $mysqli->query("SELECT * from eventos WHERE review LIKE '%$busqueda%' OR nombre LIKE '%$busqueda%' OR director LIKE '%$busqueda%'" ) ;
+    $busqueda = $mysqli->real_escape_string($busqueda);
+    $id = (int)$id;  
+    $aux = $mysqli->query("SELECT rol from usuarios WHERE idUsuario='$id' ") ;
+    if($aux->num_rows > 0)
+    {
+        $rol = $aux->fetch_assoc();
+    }
+
+    if(strcasecmp($rol['rol'],"superusuario") != 0 || strcasecmp($rol['rol'],"administrador") != 0)
+    {
+        $res = $mysqli->query("SELECT * from eventos WHERE (review LIKE '%$busqueda%' OR nombre LIKE '%$busqueda%' OR director LIKE '%$busqueda%') AND Publicado=0" ) ;
+    } 
+    if(strcasecmp($rol['rol'],"superusuario") == 0 || strcasecmp($rol['rol'],"administrador") == 0)
+    {
+        $res = $mysqli->query("SELECT * from eventos WHERE review LIKE '%$busqueda%' OR nombre LIKE '%$busqueda%' OR director LIKE '%$busqueda%'" ) ;
+    }
+
+    
     $i = 0;
 
     $eventos = [];
@@ -516,6 +549,19 @@ function buscarComentarioPorPalabra($busqueda)
 
     $mysqli->close();
     return $comentarios;
+}
+
+function cambiarVisibilidadEvento($id,$visibilidad)
+{
+    $mysqli = conexionBD();
+    $visibilidad = $mysqli->real_escape_string($visibilidad); 
+    if(strcasecmp($visibilidad,"Público") == 0)
+        $res = $mysqli->query("UPDATE eventos SET Publicado=0 WHERE idPelicula='$id'");
+    else
+        $res = $mysqli->query("UPDATE eventos SET Publicado=1 WHERE idPelicula='$id'");
+
+        
+    $mysqli->close();
 }
 
 ?>
