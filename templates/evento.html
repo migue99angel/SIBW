@@ -1,5 +1,6 @@
 {% extends "padre.html" %}
     {% block central %}
+
         <div class="evento">
             <div class="recomendaciones">
                 <div class="encPortadas">
@@ -9,8 +10,8 @@
                 </div>
             </div>
             <div class="review">
-                <h1>{{ evento['pelicula'] }}</h1>
-                <h3>{{ evento['director'] }}</h3>
+                <h1 id="titulo">{{ evento['pelicula'] }}</h1>
+                <h3 id="director">{{ evento['director'] }}</h3>
                 <h7>{{ evento['fecha'] }}</h7>
                 <!--Div que contendrá los botones para compartir e imprimir-->
                 <div class="share">
@@ -97,7 +98,7 @@
             </div>
             {% endfor %}
                 <!--Sección correspondiente a la review y sinopsis de la película-->
-                <p>{{ evento['review'] }}</p>
+                <p id="review">{{ evento['review'] }}</p>
                 <a href={{ evento['enlace'] }} class="fuente">Sinópsis por FILMAFFINITY</a>
                 <ul>
                     {% for premio in evento['premios'] %}
@@ -254,4 +255,9 @@
             </form>
             <br/>
         </div>
+
+        <script>
+            window.onload = highlight();
+        </script>
 {% endblock %}
+

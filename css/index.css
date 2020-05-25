@@ -923,3 +923,7 @@ div.desc {
     text-decoration: none;
     color: #000;
 }
+
+strong{
+    background-color: yellow !important;
+}

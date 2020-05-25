@@ -233,37 +233,64 @@ function busquedaAjax(consulta) {
         url: 'busqueda.php',
         type: 'get',
         success: function(respuesta) {
-            procesaRespuestaAjax(respuesta);
+            procesaRespuestaAjax(respuesta,consulta);
         }
     });
 }
 
-function procesaRespuestaAjax(respuesta) {
+function procesaRespuestaAjax(respuesta,consulta) {
     
     var resultados = Array();
     for(var i = 0; i < respuesta.length; i++)
          resultados.push({'nombre' : respuesta[i][1], 'id':respuesta[i][0]});
 
-    console.log(resultados)
 
-   mostrarResultados(resultados);
+   mostrarResultados(resultados,consulta);
 
 }
 
-function mostrarResultados(str) {
+function mostrarResultados(str,consulta) {
     if (str.length==0) {
       document.getElementById("livesearch").innerHTML="";
       document.getElementById("livesearch").style.border="0px";
       return;
     }
-
+    console.log(consulta);
     var res = "";
 
     for(i = 0; i < str.length; ++i) {
-        res += "<a href=\"/evento.php?pelicula=" + str[i]['id'] + "\">" + str[i]['nombre'] + "</a><br><br>";
+        res += "<a href=\"/evento.php?pelicula=" + str[i]['id'] + "?consulta="+consulta+"\">" + str[i]['nombre'] + "</a><br><br>";
     }
 
     document.getElementById("livesearch").style.border="1px solid #A5ACB2";
     $("#livesearch").html(res);
 
   }
+
+
+function getParameterByName(name) {
+    name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+    var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+    results = regex.exec(location.search);
+    return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+}
+
+function highlight() {
+    text = getParameterByName("consulta");
+    var titulo = document.getElementById("titulo").innerHTML;
+    var result = titulo.replace(text,'<strong>'+text+'</strong>')
+    document.getElementById("titulo").innerHTML = result;
+    var titulo = document.getElementById("director").innerHTML;
+    var result = titulo.replace(text,'<strong>'+text+'</strong>')
+    document.getElementById("director").innerHTML = result;
+    var barra = "/"
+    var flags = "/g"
+    var res = barra.concat(getParameterByName("consulta"));
+    res = res.concat(flags);
+    var titulo = document.getElementById("review").innerHTML;
+    var result = titulo.replace(res,'<strong>'+text+'</strong>')
+    document.getElementById("review").innerHTML = result;
+    console.log(res)
+    
+
+}
