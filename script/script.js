@@ -283,14 +283,9 @@ function highlight() {
     var titulo = document.getElementById("director").innerHTML;
     var result = titulo.replace(text,'<strong>'+text+'</strong>')
     document.getElementById("director").innerHTML = result;
-    var barra = "/"
-    var flags = "/g"
-    var res = barra.concat(getParameterByName("consulta"));
-    res = res.concat(flags);
     var titulo = document.getElementById("review").innerHTML;
-    var result = titulo.replace(res,'<strong>'+text+'</strong>')
+    var result = titulo.replace(text,'<strong>'+text+'</strong>')
     document.getElementById("review").innerHTML = result;
-    console.log(res)
     
 
 }
